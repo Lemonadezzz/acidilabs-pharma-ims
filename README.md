@@ -1,4 +1,5 @@
 # vndci-sys
+front-end overhaul
 
 cd api-server (backend) > npm i
 cd public-client (frontend) > npm i --legacy-peer-deps
