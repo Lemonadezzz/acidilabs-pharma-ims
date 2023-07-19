@@ -9,7 +9,7 @@ import "./index.css";
 // ant design theme customization
 const theme = {
   token: {
-    colorPrimary: "#fb5607",
+    colorPrimary: "#317159",
   },
 };
 
