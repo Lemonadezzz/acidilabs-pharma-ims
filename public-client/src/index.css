@@ -20,4 +20,15 @@
   body {
     @apply bg-zinc-50 overflow-x-hidden;
   }
+  .minimized-sidebar .ant-drawer-content-wrapper {
+  width: 80px !important;
+}
+
+.minimized-sidebar .ant-drawer-body {
+  padding-left: 8px !important;
+}
+
+.minimized-sidebar .ant-drawer-close {
+  display: none;
+}
 }

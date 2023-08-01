@@ -69,7 +69,7 @@ const Dashboard = () => {
         <section>
           <div className="md:flex justify-around">
             <div className="w-80 h-80 mx-auto md:m-0">
-              <h3 className="text-slate-600 text-center mt-3 mb-4">Orders</h3>
+              <h3 className="text-slate-600 text-center mt-3 mb-4">Purchase Orders</h3>
               <Doughnut
                 data={{
                   labels: ["Open", "Confirmed", "Completed", "Cancelled"],
@@ -96,7 +96,7 @@ const Dashboard = () => {
             </div>
 
             <div className="w-80 h-80 mt-12 mx-auto md:m-0">
-              <h3 className="text-slate-600 text-center mt-3 mb-4">Returns</h3>
+              <h3 className="text-slate-600 text-center mt-3 mb-4">Purchase Returns</h3>
               <Doughnut
                 data={{
                   labels: ["Pending", "Approved", "Completed"],

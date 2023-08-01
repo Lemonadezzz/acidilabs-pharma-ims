@@ -13,7 +13,7 @@ import {
 } from "antd";
 import {
   useAddCategoryMutation,
-  useArchiveItemMutation,
+  // useArchiveItemMutation,
   useDeleteItemMutation,
   useGetCategoriesQuery,
   useGetItemsQuery,
@@ -24,6 +24,7 @@ import {
 import ItemsHeader from "../Components/Items/ItemsHeader";
 import { QrReader } from "react-qr-reader";
 import { useSelector } from "react-redux";
+import { PencilIcon } from "@heroicons/react/24/outline";
 
 const Items = () => {
   const auth = useSelector((state) => state.auth);
@@ -64,7 +65,7 @@ const Items = () => {
     });
   const { data: categoriesData } = useGetCategoriesQuery();
   const [deleteItem] = useDeleteItemMutation();
-  const [archiveItem, archiveResult] = useArchiveItemMutation();
+  // const [archiveItem, archiveResult] = useArchiveItemMutation();
   const [itemUse, useResult] = useItemUseMutation();
   const [updateItem, updateResult] = useUpdateItemMutation();
   const [addCategory, addCategoryResult] = useAddCategoryMutation();
@@ -94,15 +95,15 @@ const Items = () => {
     });
   };
 
-  const handleArchive = (id) => {
-    archiveItem({ id, isArchived: true }).then((res) => {
-      if (res.data?.success) {
-        message.success("Item archived successfully!");
-      } else {
-        message.error("Something went wrong!");
-      }
-    });
-  };
+  // const handleArchive = (id) => {
+  //   archiveItem({ id, isArchived: true }).then((res) => {
+  //     if (res.data?.success) {
+  //       message.success("Item archived successfully!");
+  //     } else {
+  //       message.error("Something went wrong!");
+  //     }
+  //   });
+  // };
 
   const handleUseItem = () => {
     if (!usedAmount) return message.error("Please enter quantity to use");
@@ -178,7 +179,7 @@ const Items = () => {
       key: "name",
     },
     {
-      title: "Qty",
+      title: "Quantity",
       dataIndex: "qty",
       key: "qty",
     },
@@ -241,30 +242,9 @@ const Items = () => {
               )
             }
           >
-            Edit
+             <PencilIcon className="h-5 w-5 " />
+            
           </Button>
-          <Popconfirm
-            placement="bottomRight"
-            title={"Are you sure to archive this record?"}
-            onConfirm={() => handleArchive(item._id)}
-            okText="Yes"
-            cancelText="No"
-            className="hidden md:inline-block"
-          >
-            <Button
-              danger
-              className="ml-2"
-              loading={archiveResult.isLoading}
-              disabled={
-                !(
-                  auth.permissions.items.includes("W") ||
-                  auth.permissions.items.includes("D")
-                )
-              }
-            >
-              Archive
-            </Button>
-          </Popconfirm>
         </div>
       ),
     },

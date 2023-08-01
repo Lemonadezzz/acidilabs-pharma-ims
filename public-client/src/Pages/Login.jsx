@@ -131,7 +131,7 @@ const Login = () => {
     <main className="w-screen h-screen flex justify-center items-center">
       <div className="w-[350px] sm:w-[450px] bg-white p-4 sm:px-8 sm:py-10 rounded-md">
         <h1 className="text-primary text-center my-6 sm:mt-6 sm:mb-10 text-4xl">
-          VNDCI-SYS
+          KCU Pharmacy
         </h1>
         <Input
           placeholder="Username"

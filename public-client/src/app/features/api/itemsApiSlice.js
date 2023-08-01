@@ -94,22 +94,22 @@ export const itemsApiSlice = createApi({
       providesTags: ["Warning"],
     }),
 
-    // archive item
-    archiveItem: builder.mutation({
-      query: (body) => ({
-        url: "/api/items/archive-item",
-        method: "POST",
-        body,
-      }),
-      invalidatesTags: ["Items", "Archives", "Warning"],
-    }),
+    // // archive item
+    // archiveItem: builder.mutation({
+    //   query: (body) => ({
+    //     url: "/api/items/archive-item",
+    //     method: "POST",
+    //     body,
+    //   }),
+    //   invalidatesTags: ["Items", "Archives", "Warning"],
+    // }),
 
-    // get archived items
-    getArchivedItems: builder.query({
-      query: ({ page, sortby, sortorder }) =>
-        `/api/items/archived?page=${page}&sortby=${sortby}&sortorder=${sortorder}`,
-      providesTags: ["Archives"],
-    }),
+    // // get archived items
+    // getArchivedItems: builder.query({
+    //   query: ({ page, sortby, sortorder }) =>
+    //     `/api/items/archived?page=${page}&sortby=${sortby}&sortorder=${sortorder}`,
+    //   providesTags: ["Archives"],
+    // }),
   }),
 });
 
@@ -123,6 +123,6 @@ export const {
   useGetCategoriesQuery,
   useAddCategoryMutation,
   useGetWarningQuery,
-  useArchiveItemMutation,
-  useGetArchivedItemsQuery,
+  // useArchiveItemMutation,
+  // useGetArchivedItemsQuery,
 } = itemsApiSlice;

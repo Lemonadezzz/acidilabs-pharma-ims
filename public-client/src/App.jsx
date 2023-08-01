@@ -12,7 +12,7 @@ import Returns from "./Pages/Returns";
 import Vendors from "./Pages/Vendors";
 import Logs from "./Pages/Logs";
 import Users from "./Pages/Users";
-import Archives from "./Pages/Archives";
+// import Archives from "./Pages/Archives";
 
 const App = () => {
   const auth = useSelector((state) => state.auth);
@@ -50,7 +50,7 @@ const App = () => {
             <Route path="/" element={<Dashboard />} />
             <Route path="/items" element={<Items />} />
             <Route path="/orders" element={<Orders />} />
-            <Route path="/archives" element={<Archives />} />
+            {/* <Route path="/archives" element={<Archives />} /> */}
             <Route path="/returns" element={<Returns />} />
             <Route path="/vendors" element={<Vendors />} />
             <Route path="/logs" element={<Logs />} />

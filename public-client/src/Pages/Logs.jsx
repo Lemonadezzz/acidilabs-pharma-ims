@@ -1,14 +1,5 @@
-import {
-  Badge,
-  Button,
-  Card,
-  message,
-  Popconfirm,
-  Select,
-  Space,
-  Spin,
-} from "antd";
 import { useState } from "react";
+import { Button, message, Popconfirm, Select, Space, Spin, Table } from "antd";
 import {
   EnvelopeIcon,
   EnvelopeOpenIcon,
@@ -21,27 +12,28 @@ import {
   useMarkLogAsReadMutation,
 } from "../app/features/api/logsApiSlice";
 import { useSelector } from "react-redux";
+import { css } from "styled-components"; // Import the styled-components library
 
 const Logs = () => {
   const auth = useSelector((state) => state.auth);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
-  const [type, setType] = useState("ALL"); // possible values: ALL,
-  const [status, setStatus] = useState("ALL"); // possible values: ALL, UNREAD, READ
+  const [type, setType] = useState("ALL");
+  const [status, setStatus] = useState("ALL");
 
   const { data, isLoading } = useGetLogsQuery({ page, limit, type, status });
   const [markLogAsRead] = useMarkLogAsReadMutation();
   const [deleteLog] = useDeleteLogMutation();
   const [deleteReadLogs, deleteResult] = useDeleteReadLogsMutation();
 
-  if (auth.userData.role !== "Admin")
+  if (auth.userData.role !== "Admin") {
     return (
       <h1 className="text-center mt-24 text-red-300 uppercase">
         You are not authorized to view this page
       </h1>
     );
+  }
 
-  // get colors for ribbon based on action
   const getRibbonColor = (action) => {
     switch (action) {
       case "CREATE":
@@ -55,7 +47,61 @@ const Logs = () => {
     }
   };
 
-  // handles
+  const columns = [
+    {
+      title: "Type",
+      dataIndex: "type",
+      key: "type",
+    },
+    {
+      title: "Action",
+      dataIndex: "action",
+      key: "action",
+      render: (text, record) => (
+        <Space size="middle">
+          <span
+            style={{
+              color: record.type === "AUTH" ? "magenta" : getRibbonColor(text),
+            }}
+          >
+            {record.type === "AUTH" ? "AUTH" : text}
+          </span>
+        </Space>
+      ),
+    },
+    {
+      title: "Message",
+      dataIndex: "message",
+      key: "message",
+    },
+    {
+      title: "Actions",
+      key: "actions",
+      render: (text, record) => (
+        <Space size="middle">
+          <TrashIcon
+            className="w-6 h-6 cursor-pointer text-red-500"
+            onClick={() => {
+              deleteLog({ id: record._id }).then((res) => {
+                if (res.data.success) {
+                  message.success("Log deleted");
+                }
+              });
+            }}
+          />
+        </Space>
+      ),
+    },
+  ];
+
+  const dataSource = data?.logs.map((log) => ({
+    key: log._id,
+    type: log.type,
+    action: log.type === "AUTH" ? "AUTH" : log.action,
+    message: log.message,
+    status: log.status,
+  }));
+
   const confirm = () => {
     deleteReadLogs().then((res) => {
       if (res.data.success) {
@@ -104,56 +150,18 @@ const Logs = () => {
       )}
       {!isLoading && (
         <>
-          <div className="grid grid-cols-2 gap-x-6 gap-y-4">
-            {data.logs.map((log) => (
-              <Badge.Ribbon
-                key={log._id}
-                text={log.type === "AUTH" ? "AUTH" : log.action}
-                color={
-                  log.type === "AUTH" ? "magenta" : getRibbonColor(log.action)
-                }
-              >
-                <Card
-                  title={log.type}
-                  size="small"
-                  style={{
-                    width: "100%",
-                    backgroundColor:
-                      log.status === "UNREAD" ? "#f5f5f4" : "#fff",
-                  }}
-                >
-                  <p>{log.message}</p>
-                  <div className="flex justify-end items-center gap-x-2">
-                    {log.status === "UNREAD" ? (
-                      <EnvelopeIcon
-                        className="w-6 h-6 cursor-pointer"
-                        onClick={() => {
-                          markLogAsRead({ id: log._id }).then((res) => {
-                            if (res.data.success) {
-                              message.success("Log marked as read");
-                            }
-                          });
-                        }}
-                      />
-                    ) : (
-                      <EnvelopeOpenIcon className="w-6 h-6" />
-                    )}
-
-                    <TrashIcon
-                      className="w-6 h-6 cursor-pointer text-red-500"
-                      onClick={() => {
-                        deleteLog({ id: log._id }).then((res) => {
-                          if (res.data.success) {
-                            message.success("Log deleted");
-                          }
-                        });
-                      }}
-                    />
-                  </div>
-                </Card>
-              </Badge.Ribbon>
-            ))}
-          </div>
+          <Table
+            dataSource={dataSource}
+            columns={columns}
+            pagination={true}
+            rowKey={(record) => record.key}
+            style={{ marginBottom: "16px" }}
+            className={css` // Add the styled-components classnames utility here
+              .ant-table-thead > tr > th {
+                background-color: #317159;
+              }
+            `}
+          />
           {data?.logs.length === 25 && (
             <div className="w-full flex justify-center gap-x-4 mt-4">
               <Button
@@ -169,7 +177,7 @@ const Logs = () => {
                   setPage(page + 1);
                 }}
               >
-                Prev
+                Next
               </Button>
             </div>
           )}
@@ -180,3 +188,4 @@ const Logs = () => {
 };
 
 export default Logs;
+

@@ -161,8 +161,8 @@ const TopBar = () => {
         title={
           <div className="flex items-center">
 
-            <span className="font-bold text-primary text-xl md:text-2xl">
-              VNDCI-SYS
+            <span className="font-bold text-primary text-xl md:text-3xl">
+              KCU Pharmacy
             </span>
           </div>
         }
@@ -216,7 +216,7 @@ const TopBar = () => {
             >
               <div className="flex items-center justify-center gap-x-3">
                 <TagIcon className="w-6 h-6" />
-                <span className="font-bold ">Orders</span>
+                <span className="font-bold ">Purchase Orders</span>
               </div>
               <ChevronRightIcon className="w-5 h-5 text-primary" />
             </div>
@@ -233,7 +233,7 @@ const TopBar = () => {
             >
               <div className="flex items-center justify-center gap-x-3">
                 <TruckIcon className="w-6 h-6" />
-                <span className="font-bold ">Returns</span>
+                <span className="font-bold ">Purchase Returns</span>
               </div>
               <ChevronRightIcon className="w-5 h-5 text-primary" />
             </div>
@@ -249,7 +249,7 @@ const TopBar = () => {
             >
               <div className="flex items-center justify-center gap-x-3">
                 <IdentificationIcon className="w-6 h-6" />
-                <span className="font-bold ">Vendors</span>
+                <span className="font-bold ">Suppliers</span>
               </div>
               <ChevronRightIcon className="w-5 h-5 text-primary" />
             </div>
@@ -272,7 +272,7 @@ const TopBar = () => {
             </div>
           )}
 
-          {auth.userData.permissions.archives.includes("R") && (
+          {/* {auth.userData.permissions.archives.includes("R") && (
             <div
               className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/archives" && "text-white bg-primary"
                 }`}
@@ -287,7 +287,7 @@ const TopBar = () => {
               </div>
               <ChevronRightIcon className="w-5 h-5 text-primary" />
             </div>
-          )}
+          )} */}
 
           {auth.userData.role === "Admin" && (
             <div
@@ -300,7 +300,7 @@ const TopBar = () => {
             >
               <div className="flex items-center justify-center gap-x-3">
                 <UsersIcon className="w-6 h-6" />
-                <span className="font-bold ">Users</span>
+                <span className="font-bold ">User Management</span>
               </div>
               <ChevronRightIcon className="w-5 h-5 text-primary" />
             </div>

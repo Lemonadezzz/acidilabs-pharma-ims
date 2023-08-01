@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Button, Input, message, Modal, Radio, Select } from "antd";
 import { QrReader } from "react-qr-reader";
-import { PlusIcon, QrCodeIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { PlusIcon, QrCodeIcon, XMarkIcon} from "@heroicons/react/24/outline";
+
 import {
   useAddCategoryMutation,
   useCreateItemMutation,
@@ -72,7 +73,7 @@ const ItemsHeader = ({
         <div className="md:flex gap-4">
           <Button
             type="primary"
-            className="font-bold bg-green-500 flex items-center justify-center gap-x-2"
+            className="font-bold bg-green-800 flex items-center justify-center gap-x-2"
             onClick={() => setIsCreateItemModalVisible((prev) => !prev)}
             disabled={
               !(
