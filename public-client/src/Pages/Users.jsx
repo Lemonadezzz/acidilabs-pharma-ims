@@ -187,7 +187,7 @@ const Users = () => {
     <main className="mt-14 p-2 md:p-4 max-w-[1800px] mx-auto">
       <Button
         type="primary"
-        className="font-bold bg-green-500 flex items-center justify-center gap-x-2 mx-auto mt-4 mb-3"
+        className="font-bold bg-green-500 flex items-center justify-center gap-x-2 mx-auto mt-4 mb-3 ml-4"
         onClick={() => setIsCreateUserModalVisible((prev) => !prev)}
       >
         <PlusIcon className="h-5 w-5 " />
@@ -204,7 +204,7 @@ const Users = () => {
           rowKey="_id"
           columns={columns}
           dataSource={data.users}
-          className="mt-4 md:mt-8"
+          className="mt-4 md:mt-8 ml-4"
           pagination={false}
           key={(item) => item._id}
         />

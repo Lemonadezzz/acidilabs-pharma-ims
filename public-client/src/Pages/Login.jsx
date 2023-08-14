@@ -10,6 +10,14 @@ import {
 import { storeLoginData } from "../app/features/authSlice";
 import { useState } from "react";
 
+const Footer = () => {
+  return (
+    <footer className="bg-gray-200 p-0.4 text-center fixed bottom-0 left-0 w-full">
+      <p>.v1 &copy; {new Date().getFullYear()} KCU Pharmacy. All rights reserved.</p>
+    </footer>
+  );
+};
+
 const Login = () => {
   const {
     isLoading,
@@ -128,43 +136,45 @@ const Login = () => {
   };
 
   return (
-    <main className="w-screen h-screen flex justify-center items-center">
-      <div className="w-[350px] sm:w-[450px] bg-white p-4 sm:px-8 sm:py-10 rounded-md">
-        <h1 className="text-primary text-center my-6 sm:mt-6 sm:mb-10 text-4xl">
-          KCU Pharmacy
-        </h1>
-        <Input
-          placeholder="Username"
-          type="text"
-          className="my-3"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <Input.Password
-          placeholder={inputPlaceholder}
-          status={inputStatus}
-          type="text"
-          className="mt-3 mb-6"
-          onKeyDown={handleCapsLock}
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
+    <div className="w-screen h-screen flex flex-col items-center justify-center bg-gray-100">
+      <main className="w-screen flex justify-end items-center">
+        <div className="w-[50vh] sm:w-[450px] h-[100vh] bg-white p-4 sm:px-8 sm:py-10 rounded-md shadow-lg flex flex-col items-center justify-center ">
+          <h1 className="text-primary text-center my-6 sm:mt-6 sm:mb-10 text-4xl">
+            KCU Pharmacy
+          </h1>
+          <Input
+            placeholder="Username"
+            type="text"
+            className="my-3"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <Input.Password
+            placeholder={inputPlaceholder}
+            status={inputStatus}
+            type="text"
+            className="mt-3 mb-6"
+            onKeyDown={handleCapsLock}
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
 
-        <Button
-          type="primary"
-          loading={result.isLoading || signupResult.isLoading}
-          onClick={handleLoginClick}
-          icon={<LockClosedIcon className="sm:w-5 sm:h-5 w-4 h-4" />}
-          className="flex justify-center items-center gap-1 font-bold sm:text-lg mx-auto w-[50%] mt-4"
-        >
-          {result.isLoading || signupResult.isLoading
-            ? "Verifying..."
-            : "Login"}
-        </Button>
-      </div>
-    </main>
+          <Button
+            type="primary"
+            loading={result.isLoading || signupResult.isLoading}
+            onClick={handleLoginClick}
+            icon={<LockClosedIcon className="sm:w-5 sm:h-5 w-4 h-4" />}
+            className="flex justify-center items-center gap-1 font-bold sm:text-lg mx-auto w-[50%] mt-4"
+          >
+            {result.isLoading || signupResult.isLoading ? "Verifying..." : "Login"}
+          </Button>
+        </div>
+      </main>
+      <Footer />
+    </div>
+
   );
 };
 
