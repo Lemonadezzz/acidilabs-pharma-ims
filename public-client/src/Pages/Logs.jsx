@@ -12,7 +12,7 @@ import {
   useMarkLogAsReadMutation,
 } from "../app/features/api/logsApiSlice";
 import { useSelector } from "react-redux";
-import { css } from "styled-components"; // Import the styled-components library
+//import { css } from "styled-components"; // Import the styled-components library
 
 const Logs = () => {
   const auth = useSelector((state) => state.auth);
@@ -156,7 +156,7 @@ const Logs = () => {
             pagination={true}
             rowKey={(record) => record.key}
             style={{ marginBottom: "16px" }}
-            className={css` // Add the styled-components classnames utility here
+            className={` // Add the styled-components classnames utility here
               .ant-table-thead > tr > th {
                 background-color: #317159;
               }

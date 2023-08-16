@@ -161,8 +161,8 @@ const TopBar = () => {
         title={
           <div className="flex items-center">
 
-            <span className="font-bold text-primary text-xl md:text-3xl">
-              KCU Pharmacy
+            <span className="font-bold text-primary text-xl md:text-1xl">
+              AcidiLabs Pharma IMS v1.0
             </span>
           </div>
         }

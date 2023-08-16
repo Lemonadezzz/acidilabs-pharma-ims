@@ -12,8 +12,8 @@ import { useState } from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-200 p-0.4 text-center fixed bottom-0 left-0 w-full">
-      <p>.v1 &copy; {new Date().getFullYear()} KCU Pharmacy. All rights reserved.</p>
+    <footer className="bg-green-900 p-0.4 text-center fixed bottom-0 left-0 w-full text-white">
+      <p>&copy; {new Date().getFullYear()} AcidiLabs Pharma IMS v1.0</p>
     </footer>
   );
 };
@@ -139,9 +139,9 @@ const Login = () => {
     <div className="w-screen h-screen flex flex-col items-center justify-center bg-gray-100">
       <main className="w-screen flex justify-end items-center">
         <div className="w-[50vh] sm:w-[450px] h-[100vh] bg-white p-4 sm:px-8 sm:py-10 rounded-md shadow-lg flex flex-col items-center justify-center ">
-          <h1 className="text-primary text-center my-6 sm:mt-6 sm:mb-10 text-4xl">
-            KCU Pharmacy
-          </h1>
+          <h3 className="text-primary text-center my-6 sm:mt-6 sm:mb-10">
+            AcidiLabs Pharma IMS v1.0
+          </h3>
           <Input
             placeholder="Username"
             type="text"

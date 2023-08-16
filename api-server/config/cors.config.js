@@ -1,8 +1,7 @@
 // Allowed origins
 const whitelist = [
   "https://yourdomain.com",
-  "http://127.0.0.1:5000",
-  "https://vndci-sys.vercel.app"
+  "http://127.0.0.1:5000"
 ];
 
 // !origin for dev enviroment only
