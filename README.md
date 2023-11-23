@@ -1,4 +1,4 @@
-# vndci-sys
+# VNDCI-SYS (Web-Based Inventory System - Capstone Project)
 front-end overhaul
 
 ## cd api-server (backend) > npm i
