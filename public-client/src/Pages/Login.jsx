@@ -154,7 +154,13 @@ const Login = () => {
             status={inputStatus}
             type="text"
             className="mt-3 mb-6"
-            onKeyDown={handleCapsLock}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleLoginClick();
+              } else {
+                handleCapsLock(e);
+              }
+            }}
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
