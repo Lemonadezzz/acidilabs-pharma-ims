@@ -22,7 +22,7 @@ import {
   useUpdateItemMutation,
 } from "../app/features/api/itemsApiSlice";
 import ItemsHeader from "../Components/Items/ItemsHeader";
-import { QrReader } from "react-qr-reader";
+// import { QrReader } from "react-qr-reader";
 import { useSelector } from "react-redux";
 import { PencilIcon } from "@heroicons/react/24/outline";
 
@@ -35,7 +35,7 @@ const Items = () => {
   const [sortby, setSortby] = useState("createdAt");
   const [sortorder, setSortorder] = useState("desc");
   const [searchText, setSearchText] = useState(searchParams.get("sku"));
-  const [isSearchQrModalVisible, setIsSearchQrModalVisible] = useState(false);
+  // const [isSearchQrModalVisible, setIsSearchQrModalVisible] = useState(false);
   const [isUpdateModalVisible, setIsUpdateModalVisible] = useState(false);
   const [isUseModalVisible, setIsUseModalVisible] = useState(false);
   const [editSelecedItemId, setEditSelecedItemId] = useState(null);
@@ -255,7 +255,7 @@ const Items = () => {
       <ItemsHeader
         searchText={searchText}
         setSearchText={setSearchText}
-        setIsSearchQrModalVisible={setIsSearchQrModalVisible}
+        // setIsSearchQrModalVisible={setIsSearchQrModalVisible}
         setSortby={setSortby}
         setSortorder={setSortorder}
       />
@@ -436,7 +436,7 @@ const Items = () => {
       </Modal>
 
       {/* search qr modal */}
-      <Modal
+      {/* <Modal
         title="QR Scanner"
         open={isSearchQrModalVisible}
         onCancel={() => {
@@ -473,7 +473,7 @@ const Items = () => {
           }}
           style={{ width: "100%" }}
         />
-      </Modal>
+      </Modal> */}
     </main>
   );
 };

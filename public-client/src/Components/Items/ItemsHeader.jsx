@@ -118,12 +118,12 @@ const ItemsHeader = ({
               Search
             </Button>
           </Input.Group>
-          <Button
+          {/* <Button
             type="dashed"
             onClick={() => setIsSearchQrModalVisible((prev) => !prev)}
           >
             <QrCodeIcon className="h-5 w-5" />
-          </Button>
+          </Button> */}
         </div>
       </div>
 
@@ -164,7 +164,7 @@ const ItemsHeader = ({
             />
           )}
 
-          <Button
+          {/* <Button
             type="dashed"
             onClick={() => {
               setIsCreateItemModalVisible(false);
@@ -172,7 +172,7 @@ const ItemsHeader = ({
             }}
           >
             <QrCodeIcon className="h-5 w-5" />
-          </Button>
+          </Button> */}
         </div>
 
         <Input
