@@ -1,7 +1,8 @@
 // Allowed origins
 const whitelist = [
   "https://yourdomain.com",
-  "http://127.0.0.1:5000"
+  "http://127.0.0.1:5000",
+  "https://acidilabs-pharma-ims.vercel.app"
 ];
 
 // !origin for dev enviroment only
