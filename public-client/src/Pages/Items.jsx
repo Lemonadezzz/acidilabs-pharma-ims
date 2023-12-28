@@ -10,6 +10,7 @@ import {
   Select,
   Spin,
   Table,
+  Divider
 } from "antd";
 import {
   useAddCategoryMutation,
@@ -24,12 +25,11 @@ import {
 import ItemsHeader from "../Components/Items/ItemsHeader";
 // import { QrReader } from "react-qr-reader";
 import { useSelector } from "react-redux";
-import { PencilIcon } from "@heroicons/react/24/outline";
 
 const Items = () => {
   const auth = useSelector((state) => state.auth);
   const [searchParams] = useSearchParams();
-
+  console.log("hello");
   // local states
   const [page, setPage] = useState(1);
   const [sortby, setSortby] = useState("createdAt");
@@ -53,6 +53,9 @@ const Items = () => {
   const [category, setCategory] = useState("");
   const [stockWarningQuantity, setStockWarningQuantity] = useState(null);
   const [expiryDate, setExpiryDate] = useState("");
+  const [batchNumber, setBatchNumber] = useState("");
+  const [price, setPrice] = useState("");
+
 
   const { isLoading, data } = useGetItemsQuery({
     page,
@@ -242,8 +245,8 @@ const Items = () => {
               )
             }
           >
-             <PencilIcon className="h-5 w-5 " />
-            
+            Edit
+
           </Button>
         </div>
       ),
@@ -318,11 +321,11 @@ const Items = () => {
         <Input
           placeholder="Enter Name"
           value={name}
-          className="my-2"
+          className="my-1"
           onChange={(e) => setName(e.target.value)}
         />
 
-        <div className="flex my-2">
+        <div className="flex my-1">
           <Input
             placeholder="Enter Quantity"
             value={qty}
@@ -333,17 +336,65 @@ const Items = () => {
             placeholder="Enter Shelf"
             value={shelf}
             onChange={(e) => setShelf(e.target.value)}
-            className="ml-2"
+            className="ml-1"
           />
         </div>
 
         <Input
           placeholder="Enter expiry date (MM-DD-YYYY)"
-          className="my-2"
+          className="my-1"
           type="date"
           value={expiryDate}
           onChange={(e) => setExpiryDate(e.target.value)}
         />
+
+        <div className="flex my-1 justify-around gap-x-1">
+          <Input
+            placeholder="Batch No."
+            className="my-1"
+            value={batchNumber}
+            onChange={(e) => setBatchNumber(e.target.value)}
+          />
+
+          <Input
+            placeholder="Price"
+            className="my-1"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+          />
+        </div>
+
+        <div className="flex my-1 justify-around gap-x-1">
+          <Input
+            placeholder="Minimum stock before warning"
+            type="number"
+            className="mt-1 mb-1"
+            value={stockWarningQuantity}
+            onChange={(e) => setStockWarningQuantity(e.target.value)}
+          />
+
+          <Input
+            placeholder="Status"
+            className="mt-1 mb-1"
+          />
+          {/* dropdown? */}
+
+        </div>
+
+        <Divider style={{ borderColor: '#52bd94' }} />
+
+        <Input.TextArea
+          placeholder="Additional Details"
+          rows={2}
+          className="my-1"
+        />
+
+        <Input
+          placeholder="Manufacturer"
+          className="my-1"
+        />
+
+
 
         <div className="flex my-3 justify-around gap-x-2">
           <Select
@@ -386,13 +437,7 @@ const Items = () => {
           <Select.Option value="out of stock">Out of stock</Select.Option>
         </Select>
 
-        <Input
-          placeholder="Minimum stock before warning"
-          type="number"
-          className="mt-2 mb-4"
-          value={stockWarningQuantity}
-          onChange={(e) => setStockWarningQuantity(e.target.value)}
-        />
+
       </Modal>
 
       {/* use modal */}

@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { Button, Input, message, Modal, Radio, Select } from "antd";
-import { QrReader } from "react-qr-reader";
-import { PlusIcon, QrCodeIcon, XMarkIcon} from "@heroicons/react/24/outline";
+import { Button, Input, message, Modal, Radio, Select, Divider } from "antd";
+import { PlusIcon } from "@heroicons/react/24/outline";
 
 import {
   useAddCategoryMutation,
@@ -13,7 +12,6 @@ import { useSelector } from "react-redux";
 const ItemsHeader = ({
   searchText,
   setSearchText,
-  setIsSearchQrModalVisible,
   setSortby,
   setSortorder,
 }) => {
@@ -22,11 +20,9 @@ const ItemsHeader = ({
   const { data: categoriesData } = useGetCategoriesQuery();
   const [createItem, result] = useCreateItemMutation();
   const [addCategory, addCategoryResult] = useAddCategoryMutation();
-
   // local states
   const [isCreateItemModalVisible, setIsCreateItemModalVisible] =
     useState(false);
-  const [isQrModalVisible, setIsQrModalVisible] = useState(false);
 
   // create item states
   const [name, setName] = useState("");
@@ -39,9 +35,11 @@ const ItemsHeader = ({
   const [expiryDate, setExpiryDate] = useState("");
   const [qrText, setQrText] = useState("");
   const [newCategoryName, setNewCategoryName] = useState("");
+  const [batchNumber, setBatchNumber] = useState("");
+  const [price, setPrice] = useState("");
 
   // handles
-  const handleSearch = () => {};
+  const handleSearch = () => { };
 
   const handleCreateItem = () => {
     if (!name || !qty) {
@@ -149,7 +147,7 @@ const ItemsHeader = ({
           </Button>,
         ]}
       >
-        <div className="flex gap-2 mb-2">
+        <div className="flex gap-2 mb-1">
           {qrText ? (
             <Input
               placeholder="Enter SKU"
@@ -178,11 +176,11 @@ const ItemsHeader = ({
         <Input
           placeholder="Enter Name"
           value={name}
-          className="my-2"
+          className="my-1"
           onChange={(e) => setName(e.target.value)}
         />
 
-        <div className="flex my-2">
+        <div className="flex my-1">
           <Input
             placeholder="Enter Quantity"
             value={qty}
@@ -193,19 +191,65 @@ const ItemsHeader = ({
             placeholder="Enter Shelf"
             value={shelf}
             onChange={(e) => setShelf(e.target.value)}
-            className="ml-2"
+            className="ml-1"
           />
         </div>
 
         <Input
           placeholder="Enter expiry date (MM-DD-YYYY)"
-          className="my-2"
+          className="my-1"
           type="date"
           value={expiryDate}
           onChange={(e) => setExpiryDate(e.target.value)}
         />
 
-        <div className="flex my-3 justify-around gap-x-2">
+        <div className="flex my-1 justify-around gap-x-1">
+          <Input
+            placeholder="Batch No."
+            className="my-1"
+            value={batchNumber}
+            onChange={(e) => setBatchNumber(e.target.value)}
+          />
+
+          <Input
+            placeholder="Price"
+            className="my-1"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+          />
+        </div>
+
+        <div className="flex my-1 justify-around gap-x-1">
+          <Input
+            placeholder="Minimum stock before warning"
+            type="number"
+            className="mt-1 mb-1"
+            value={stockWarningQuantity}
+            onChange={(e) => setStockWarningQuantity(e.target.value)}
+          />
+
+          <Input
+            placeholder="Status"
+            className="mt-1 mb-1"
+          />
+          {/* dropdown? */}
+
+        </div>
+
+        <Divider style={{ borderColor: '#52bd94' }} />
+
+        <Input.TextArea
+          placeholder="Additional Details"
+          rows={2}
+          className="my-1"
+        />
+
+        <Input
+          placeholder="Manufacturer"
+          className="my-1"
+        />
+
+        <div className="flex my-1 justify-around gap-x-2">
           <Select
             placeholder="Select Category"
             onChange={(e) => setCategory(e)}
@@ -246,57 +290,10 @@ const ItemsHeader = ({
           <Select.Option value="low on stock">Low on stock</Select.Option>
           <Select.Option value="out of stock">Out of stock</Select.Option>
         </Select>
-        <Input
-          placeholder="Minimum stock before warning"
-          type="number"
-          className="mt-2 mb-4"
-          value={stockWarningQuantity}
-          onChange={(e) => setStockWarningQuantity(e.target.value)}
-        />
+
       </Modal>
 
-      <Modal
-        title="QR Scanner"
-        open={isQrModalVisible}
-        onCancel={() => {
-          setIsQrModalVisible((prev) => !prev);
-          setIsCreateItemModalVisible((prev) => !prev);
-        }}
-        footer={[
-          <Button
-            key="back"
-            onClick={() => {
-              setIsQrModalVisible((prev) => !prev);
-              setIsCreateItemModalVisible((prev) => !prev);
-            }}
-          >
-            Cancel
-          </Button>,
-        ]}
-      >
-        <QrReader
-          scanDelay={1000}
-          constraints={{
-            facingMode: "environment",
-          }}
-          onResult={(result, error) => {
-            if (!!result) {
-              console.log(result?.text);
-              setQrText(result?.text);
-              setIsQrModalVisible(false);
-              setIsCreateItemModalVisible(true);
-              message.success("QR code scanned successfully!");
-            }
-          }}
-          onError={(error) => {
-            console.info(error);
-            message.error("QR code scanning failed! Please try again.");
-            setIsQrModalVisible(false);
-            setIsCreateItemModalVisible(true);
-          }}
-          style={{ width: "100%" }}
-        />
-      </Modal>
+
     </>
   );
 };
