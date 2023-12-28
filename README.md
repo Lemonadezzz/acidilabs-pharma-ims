@@ -6,6 +6,7 @@ front-end overhaul
 
 
 ## `npm start` for each destination 
+## resources-server is not working
 
 ### username: admin
 ### password: 123456
