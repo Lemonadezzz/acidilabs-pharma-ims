@@ -52,7 +52,7 @@ const VendorsHeader = () => {
         <div className="md:flex gap-4">
           <Button
             type="primary"
-            className="font-bold bg-green-500 flex items-center justify-center gap-x-2"
+            className="font-bold bg-green-800 flex items-center justify-center gap-x-2"
             onClick={() => setIsCreateVendorModalVisible((prev) => !prev)}
             disabled={
               !(
@@ -62,7 +62,7 @@ const VendorsHeader = () => {
             }
           >
             <PlusIcon className="h-5 w-5 " />
-            <span>Create Vendor</span>
+            <span>Create Supplier</span>
           </Button>
 
           <div className="flex items-center justify-center gap-2 mt-2 md:mt-0">

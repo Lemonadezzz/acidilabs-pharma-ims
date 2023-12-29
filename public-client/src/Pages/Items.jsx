@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { useSearchParams } from "react-router-dom";
+import { ShoppingCartIcon, ArchiveBoxArrowDownIcon, PencilIcon, EyeIcon } from "@heroicons/react/24/outline";
 import {
   Button,
   Input,
@@ -54,7 +55,6 @@ const Items = () => {
   const [stockWarningQuantity, setStockWarningQuantity] = useState(null);
   const [expiryDate, setExpiryDate] = useState("");
   const [batchNumber, setBatchNumber] = useState("");
-
 
   const { isLoading, data } = useGetItemsQuery({
     page,
@@ -207,27 +207,33 @@ const Items = () => {
     {
       title: "Price"
     },
-    {
-      title: "Status"
-    },
     // {
     //   title: "Shelf",
     //   dataIndex: "shelf",
     //   key: "shelf",
     // },
     {
-      title: "Action",
+      title: "Actions",
       key: "action",
       render: (_, item) => (
         <div>
-          <Button
+          {/* <Button
             type="primary"
             onClick={() => {
               setUseSelecedItem(item);
               setIsUseModalVisible(true);
             }}
           >
-            Use
+          </Button> */}
+          <Button
+            className="hidden md:inline-block"
+          >
+            <ShoppingCartIcon className="h-5 w-5" />
+          </Button>
+
+          <Button
+            className="ml-2 hidden md:inline-block">
+            <ArchiveBoxArrowDownIcon className="h-5 w-5" />
           </Button>
 
           <Button
@@ -256,9 +262,15 @@ const Items = () => {
               )
             }
           >
-            Edit
+            <PencilIcon className="h-5 w-5" />
 
           </Button>
+
+          <Button
+            className="ml-2 hidden md:inline-block">
+            <EyeIcon className="h-5 w-5" />
+          </Button>
+
         </div>
       ),
     },
