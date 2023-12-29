@@ -23,7 +23,7 @@
 ## Set Project Name > Set Root Directory (./public-client) > Set Build Command to "react-scripts build" >
 ## Install Command to "npm install --legacy-peer-deps" > Click Deploy
 
-# After Deploying both Front-End and Backend
+# After Deploying both Frontend and Backend
 
 # ----- Configure Cross Origin Resource Sharing (CORS) -----
 ## >> Backend: api-server > config > cors.config.js
