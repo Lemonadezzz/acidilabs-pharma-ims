@@ -54,7 +54,6 @@ const Items = () => {
   const [stockWarningQuantity, setStockWarningQuantity] = useState(null);
   const [expiryDate, setExpiryDate] = useState("");
   const [batchNumber, setBatchNumber] = useState("");
-  const [price, setPrice] = useState("");
 
 
   const { isLoading, data } = useGetItemsQuery({
@@ -187,23 +186,35 @@ const Items = () => {
       key: "qty",
     },
     {
-      title: "Category",
-      dataIndex: "category",
-      key: "category",
-      responsive: ["md"],
+      title: "UoM"
     },
     {
-      title: "Expiry",
+      title: "Batch No."
+    },
+    // {
+    //   title: "Category",
+    //   dataIndex: "category",
+    //   key: "category",
+    //   responsive: ["md"],
+    // },
+    {
+      title: "Expiry Date",
       dataIndex: "expiry_date",
       key: "expiry_date",
       render: (date) => <p>{format(new Date(date), "dd-MM-yyyy")}</p>,
       responsive: ["md"],
     },
     {
-      title: "Shelf",
-      dataIndex: "shelf",
-      key: "shelf",
+      title: "Price"
     },
+    {
+      title: "Status"
+    },
+    // {
+    //   title: "Shelf",
+    //   dataIndex: "shelf",
+    //   key: "shelf",
+    // },
     {
       title: "Action",
       key: "action",
@@ -325,6 +336,13 @@ const Items = () => {
           onChange={(e) => setName(e.target.value)}
         />
 
+        <Input
+          placeholder="Enter Batch No."
+          className="my-1"
+          value={batchNumber}
+          onChange={(e) => setBatchNumber(e.target.value)}
+        />
+
         <div className="flex my-1">
           <Input
             placeholder="Enter Quantity"
@@ -333,40 +351,31 @@ const Items = () => {
             type="number"
           />
           <Input
-            placeholder="Enter Shelf"
-            value={shelf}
-            onChange={(e) => setShelf(e.target.value)}
+            placeholder="Enter UoM"
             className="ml-1"
           />
         </div>
 
-        <Input
-          placeholder="Enter expiry date (MM-DD-YYYY)"
-          className="my-1"
-          type="date"
-          value={expiryDate}
-          onChange={(e) => setExpiryDate(e.target.value)}
-        />
+        <div className="flex my-1">
 
-        <div className="flex my-1 justify-around gap-x-1">
           <Input
-            placeholder="Batch No."
-            className="my-1"
-            value={batchNumber}
-            onChange={(e) => setBatchNumber(e.target.value)}
+            placeholder="Enter Price"
+            className="mt-1 mb-1 mr-1"
           />
 
           <Input
-            placeholder="Price"
-            className="my-1"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            placeholder="Enter expiry date (MM-DD-YYYY)"
+            className="mt-1 mb-1"
+            type="date"
+            value={expiryDate}
+            onChange={(e) => setExpiryDate(e.target.value)}
           />
+
         </div>
 
         <div className="flex my-1 justify-around gap-x-1">
           <Input
-            placeholder="Minimum stock before warning"
+            placeholder="Enter Minimum Inventory Level"
             type="number"
             className="mt-1 mb-1"
             value={stockWarningQuantity}
@@ -383,20 +392,50 @@ const Items = () => {
 
         <Divider style={{ borderColor: '#52bd94' }} />
 
-        <Input.TextArea
-          placeholder="Additional Details"
-          rows={2}
+        <span style={{ fontWeight: 'bold' }}>Additional Details</span>
+
+        <Input
+          placeholder="Enter Supplier"
           className="my-1"
         />
 
         <Input
-          placeholder="Manufacturer"
+          placeholder="Enter Manufacturer"
+          className="my-1"
+        />
+
+        <div className="flex my-1 justify-around gap-x-1">
+          <Input
+            placeholder="Enter Dosage Form"
+            className="mt-1 mb-1"
+          />
+
+          <Input
+            placeholder="Prescription Required?"
+            className="mt-1 mb-1"
+          />
+        </div>
+
+        <div className="flex my-1 justify-around gap-x-1">
+          <Input
+            placeholder="Enter Strength"
+            className="mt-1 mb-1"
+          />
+
+          <Input
+            placeholder="Enter Active Ingredient"
+            className="mt-1 mb-1"
+          />
+        </div>
+
+        <Input.TextArea
+          placeholder="Enter Storage Conditions"
+          rows={2}
           className="my-1"
         />
 
 
-
-        <div className="flex my-3 justify-around gap-x-2">
+        {/* <div className="flex my-3 justify-around gap-x-2">
           <Select
             placeholder="Select Category"
             onChange={(e) => setCategory(e)}
@@ -435,7 +474,7 @@ const Items = () => {
           <Select.Option value="on stock">On stock</Select.Option>
           <Select.Option value="low on stock">Low on stock</Select.Option>
           <Select.Option value="out of stock">Out of stock</Select.Option>
-        </Select>
+        </Select> */}
 
 
       </Modal>

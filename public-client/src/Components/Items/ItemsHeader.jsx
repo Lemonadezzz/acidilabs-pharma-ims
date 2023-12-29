@@ -36,7 +36,6 @@ const ItemsHeader = ({
   const [qrText, setQrText] = useState("");
   const [newCategoryName, setNewCategoryName] = useState("");
   const [batchNumber, setBatchNumber] = useState("");
-  const [price, setPrice] = useState("");
 
   // handles
   const handleSearch = () => { };
@@ -139,7 +138,7 @@ const ItemsHeader = ({
           <Button
             key="submit"
             type="primary"
-            style={{ backgroundColor: "#22c55e" }}
+            style={{ backgroundColor: "#58bf97" }}
             loading={result.isLoading}
             onClick={handleCreateItem}
           >
@@ -180,6 +179,13 @@ const ItemsHeader = ({
           onChange={(e) => setName(e.target.value)}
         />
 
+        <Input
+          placeholder="Enter Batch No."
+          className="my-1"
+          value={batchNumber}
+          onChange={(e) => setBatchNumber(e.target.value)}
+        />
+
         <div className="flex my-1">
           <Input
             placeholder="Enter Quantity"
@@ -188,40 +194,32 @@ const ItemsHeader = ({
             type="number"
           />
           <Input
-            placeholder="Enter Shelf"
-            value={shelf}
-            onChange={(e) => setShelf(e.target.value)}
+            placeholder="Enter UoM"
             className="ml-1"
           />
         </div>
 
-        <Input
-          placeholder="Enter expiry date (MM-DD-YYYY)"
-          className="my-1"
-          type="date"
-          value={expiryDate}
-          onChange={(e) => setExpiryDate(e.target.value)}
-        />
+        <div className="flex my-1">
 
-        <div className="flex my-1 justify-around gap-x-1">
           <Input
-            placeholder="Batch No."
-            className="my-1"
-            value={batchNumber}
-            onChange={(e) => setBatchNumber(e.target.value)}
+            placeholder="Enter Price"
+            className="mt-1 mb-1 mr-1"
           />
 
           <Input
-            placeholder="Price"
-            className="my-1"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            placeholder="Enter expiry date (MM-DD-YYYY)"
+            className="mt-1 mb-1"
+            type="date"
+            value={expiryDate}
+            onChange={(e) => setExpiryDate(e.target.value)}
           />
+
         </div>
 
+
         <div className="flex my-1 justify-around gap-x-1">
           <Input
-            placeholder="Minimum stock before warning"
+            placeholder="Enter Minimum Inventory Level"
             type="number"
             className="mt-1 mb-1"
             value={stockWarningQuantity}
@@ -238,18 +236,50 @@ const ItemsHeader = ({
 
         <Divider style={{ borderColor: '#52bd94' }} />
 
-        <Input.TextArea
-          placeholder="Additional Details"
-          rows={2}
+        <span style={{ fontWeight: 'bold' }}>Additional Details</span>
+
+        <Input
+          placeholder="Enter Supplier"
           className="my-1"
         />
 
         <Input
-          placeholder="Manufacturer"
+          placeholder="Enter Manufacturer"
           className="my-1"
         />
 
-        <div className="flex my-1 justify-around gap-x-2">
+        <div className="flex my-1 justify-around gap-x-1">
+          <Input
+            placeholder="Enter Dosage Form"
+            className="mt-1 mb-1"
+          />
+
+          <Input
+            placeholder="Prescription Required?"
+            className="mt-1 mb-1"
+          />
+        </div>
+
+        <div className="flex my-1 justify-around gap-x-1">
+          <Input
+            placeholder="Enter Strength"
+            className="mt-1 mb-1"
+          />
+
+          <Input
+            placeholder="Enter Active Ingredient"
+            className="mt-1 mb-1"
+          />
+        </div>
+
+        <Input.TextArea
+          placeholder="Enter Storage Conditions"
+          rows={2}
+          className="my-1"
+        />
+
+
+        {/* <div className="flex my-1 justify-around gap-x-2">
           <Select
             placeholder="Select Category"
             onChange={(e) => setCategory(e)}
@@ -279,8 +309,9 @@ const ItemsHeader = ({
           >
             Add
           </Button>
-        </div>
-        <Select
+        </div> */}
+
+        {/* <Select
           defaultValue="on stock"
           value={status}
           onChange={(e) => setStatus(e)}
@@ -289,7 +320,7 @@ const ItemsHeader = ({
           <Select.Option value="on stock">On stock</Select.Option>
           <Select.Option value="low on stock">Low on stock</Select.Option>
           <Select.Option value="out of stock">Out of stock</Select.Option>
-        </Select>
+        </Select> */}
 
       </Modal>
 
