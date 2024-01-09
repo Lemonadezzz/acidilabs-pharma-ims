@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Navigate } from "react-router-dom";
 import { Button, Input, message, Spin } from "antd";
 import { LockClosedIcon } from "@heroicons/react/24/outline";
+import GreenBG from "../Image/Green-BG.png"
 import {
   useLoginMutation,
   useInitializeAuthQuery,
@@ -136,7 +137,10 @@ const Login = () => {
   };
 
   return (
-    <div className="w-screen h-screen flex flex-col items-center justify-center bg-gray-100">
+    <div className="w-screen h-screen flex bg-gray-100" >
+      <div className="flex-1 flex items-start justify-start">
+      <img src={GreenBG} alt="Green Background" style={{ width: '154vh', height: '100vh' }}/>
+      </div>
       <main className="w-screen flex justify-end items-center">
         <div className="w-[50vh] sm:w-[450px] h-[100vh] bg-white p-4 sm:px-8 sm:py-10 rounded-md shadow-lg flex flex-col items-center justify-center ">
           <h3 className="text-primary text-center my-6 sm:mt-6 sm:mb-10">
