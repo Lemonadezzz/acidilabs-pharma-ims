@@ -10,6 +10,7 @@ import {
 } from "../app/features/api/authApiSlice";
 import { storeLoginData } from "../app/features/authSlice";
 import { useState } from "react";
+import {Checkbox } from 'antd';
 
 const Footer = () => {
   return (
@@ -32,6 +33,7 @@ const Login = () => {
   // local states
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [savePassword, setSavePassword] = useState(false);
   const [inputStatus, setInputStatus] = useState("");
   const [inputPlaceholder, setInputPlaceholder] = useState("Password");
 
@@ -65,6 +67,10 @@ const Login = () => {
         // setInputPlaceholder("Password");
       }
     }
+  };
+  
+  const handleSavePasswordChange = () => {
+    setSavePassword(!savePassword);
   };
 
   const handleLoginClick = () => {
@@ -104,6 +110,7 @@ const Login = () => {
         navigate("/");
       });
     }
+    
 
     // dispatching login api call
     login({ username, password }).then((res) => {
@@ -170,6 +177,11 @@ const Login = () => {
               setPassword(e.target.value);
             }}
           />
+          <div className="flex items-center mt-2">
+            <Checkbox checked={savePassword} onChange={handleSavePasswordChange}>
+              Save Password
+            </Checkbox>
+          </div>
 
           <Button
             type="primary"
