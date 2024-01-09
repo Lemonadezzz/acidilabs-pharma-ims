@@ -9,7 +9,6 @@ import {
   Spin,
   Table,
   Upload,
-  Pagination
 } from "antd";
 import OrdersHeader from "../Components/Orders/OrdersHeader";
 import {
@@ -62,15 +61,6 @@ const Orders = () => {
   const [deliveryDate, setDeliveryDate] = useState(null);
   const [orderDetails, setOrderDetails] = useState("");
   const [editOrderId, setEditOrderId] = useState("");
-
-  const pagination = {
-    position: ['bottomCenter'], // This aligns the pagination at the bottom center
-    defaultPageSize: 10, // Set your desired page size
-    total: data.totalOrders, // Pass the total number of orders as 'total'
-    current: page, // Pass the current page as 'current'
-    onChange: (newPage) => setPage(newPage), // Handle page change event
-  };
-  
 
   if (!auth.permissions.orders.includes("R"))
     return (
