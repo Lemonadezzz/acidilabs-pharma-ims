@@ -97,7 +97,7 @@ const VendorsHeader = () => {
       </div>
 
       <Modal
-        title="Create Vendor"
+        title="Create Supplier"
         open={isCreateVendorModalVisible}
         onCancel={() => setIsCreateVendorModalVisible((prev) => !prev)}
         footer={[
@@ -110,7 +110,7 @@ const VendorsHeader = () => {
           <Button
             key="submit"
             type="primary"
-            style={{ backgroundColor: "#22c55e" }}
+            style={{ backgroundColor: "#58bf97" }}
             loading={result.isLoading}
             onClick={handleCreateVendor}
           >
@@ -119,7 +119,7 @@ const VendorsHeader = () => {
         ]}
       >
         <Input
-          placeholder="Enter vendor display name"
+          placeholder="Enter supplier display name"
           className="my-2"
           value={displayName}
           onChange={(e) => setDisplayName(e.target.value)}

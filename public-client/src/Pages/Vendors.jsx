@@ -107,7 +107,7 @@ const Vendors = () => {
           columns={columns}
           dataSource={data.vendors}
           className="mt-4 md:mt-8"
-          pagination={false}
+          pagination={true}
           key={(item) => item._id}
         />
       )}

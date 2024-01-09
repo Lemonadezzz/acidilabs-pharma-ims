@@ -191,7 +191,7 @@ const Returns = () => {
           columns={columns}
           dataSource={data.returns}
           className="mt-4 md:mt-8"
-          pagination={false}
+          pagination={true}
           key={(order) => order._id}
         />
       )}
@@ -203,7 +203,7 @@ const Returns = () => {
           columns={columns}
           dataSource={searchData?.returns}
           className="mt-4 md:mt-8"
-          pagination={false}
+          pagination={true}
           key={(order) => order._id}
         />
       )}
