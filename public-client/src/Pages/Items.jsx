@@ -11,7 +11,8 @@ import {
   Select,
   Spin,
   Table,
-  Divider
+  Divider,
+  Tooltip
 } from "antd";
 import {
   useAddCategoryMutation,
@@ -39,6 +40,8 @@ const Items = () => {
   // const [isSearchQrModalVisible, setIsSearchQrModalVisible] = useState(false);
   const [isUpdateModalVisible, setIsUpdateModalVisible] = useState(false);
   const [isUseModalVisible, setIsUseModalVisible] = useState(false);
+  const [isDetailsModalVisible, setIsDetailsModalVisible] = useState(false);
+  const [selectedItemDetails, setSelectedItemDetails] = useState(null);
   const [editSelecedItemId, setEditSelecedItemId] = useState(null);
   const [editSelecedItem, setEditSelecedItem] = useState(null);
   const [useSelecedItem, setUseSelecedItem] = useState(null);
@@ -125,6 +128,13 @@ const Items = () => {
       }
     });
   };
+
+  const handleViewDetails = (item) => {
+    // Perform any logic to fetch additional details if needed
+    setSelectedItemDetails(item);
+    setIsDetailsModalVisible(true);
+  };
+
 
   const handleUpdateItem = () => {
     if (!editSelecedItemId) return message.error("Please try again!");
@@ -225,51 +235,63 @@ const Items = () => {
             }}
           >
           </Button> */}
-          <Button
-            className="hidden md:inline-block"
-          >
-            <ShoppingCartIcon className="h-5 w-5" />
-          </Button>
+          <Tooltip title="Record Sale" >
+            <Button className="hidden md:inline-block" >
+              <ShoppingCartIcon className="h-5 w-5" />
+            </Button>
+          </Tooltip>
 
-          <Button
-            className="ml-2 hidden md:inline-block">
-            <ArchiveBoxArrowDownIcon className="h-5 w-5" />
-          </Button>
+          <Tooltip title="Restock" >
+            <Button
+              className="ml-2 hidden md:inline-block"
+              onClick={() => {
 
-          <Button
-            className="ml-2 hidden md:inline-block"
-            onClick={() => {
-              setEditSelecedItemId(item._id);
-              setName(item.name);
-              setQty(item.qty);
-              setSku(item.sku);
-              setShelf(item.shelf);
-              setStatus(item.status);
-              setCategory(item.category);
-              setStockWarningQuantity(item.low_stock_warning_qty);
-              // date would be in string format ("yyyy-MM-dd")
-              setExpiryDate(
-                item.expiry_date
-                  ? format(new Date(item.expiry_date), "yyyy-MM-dd")
-                  : ""
-              );
-              setIsUpdateModalVisible(true);
-            }}
-            disabled={
-              !(
-                auth.permissions.items.includes("W") ||
-                auth.permissions.items.includes("D")
-              )
-            }
-          >
-            <PencilIcon className="h-5 w-5" />
+              }}
+            >
+              <ArchiveBoxArrowDownIcon className="h-5 w-5" />
+            </Button>
+          </Tooltip>
 
-          </Button>
+          <Tooltip title="Edit Item" >
+            <Button
+              className="ml-2 hidden md:inline-block"
+              onClick={() => {
+                setEditSelecedItemId(item._id);
+                setName(item.name);
+                setQty(item.qty);
+                setSku(item.sku);
+                setShelf(item.shelf);
+                setStatus(item.status);
+                setCategory(item.category);
+                setStockWarningQuantity(item.low_stock_warning_qty);
+                // date would be in string format ("yyyy-MM-dd")
+                setExpiryDate(
+                  item.expiry_date
+                    ? format(new Date(item.expiry_date), "yyyy-MM-dd")
+                    : ""
+                );
+                setIsUpdateModalVisible(true);
+              }}
+              disabled={
+                !(
+                  auth.permissions.items.includes("W") ||
+                  auth.permissions.items.includes("D")
+                )
+              }
+            >
+              <PencilIcon className="h-5 w-5" />
 
-          <Button
-            className="ml-2 hidden md:inline-block">
-            <EyeIcon className="h-5 w-5" />
-          </Button>
+            </Button>
+          </Tooltip>
+
+          <Tooltip title="View Details">
+            <Button
+              className="ml-2 hidden md:inline-block"
+              onClick={() => handleViewDetails(item)}
+            >
+              <EyeIcon className="h-5 w-5" />
+            </Button>
+          </Tooltip>
 
         </div>
       ),
@@ -490,6 +512,32 @@ const Items = () => {
 
 
       </Modal>
+      <Modal
+        title="Item Details"
+        visible={isDetailsModalVisible}
+        onCancel={() => setIsDetailsModalVisible(false)}
+        footer={[
+          <Button
+            key="back"
+            onClick={() => setIsDetailsModalVisible(false)}
+          >
+            Close
+          </Button>,
+        ]}
+      >
+        {selectedItemDetails && (
+          <div>
+            {/* Display all the item details here */}
+            <p>Status: {selectedItemDetails.status}</p>
+            <p>SKU: {selectedItemDetails.sku}</p>
+            <p>Name: {selectedItemDetails.name}</p>
+            <p>Quantity: {selectedItemDetails.qty}</p>
+            <p>Date: {selectedItemDetails.expiry_date}</p>
+            {/* Add more details as needed */}
+          </div>
+        )}
+      </Modal>
+
 
       {/* use modal */}
       <Modal

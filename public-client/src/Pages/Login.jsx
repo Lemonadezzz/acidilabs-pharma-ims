@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Navigate } from "react-router-dom";
-import { Button, Input, message, Spin } from "antd";
+import { Button, Input, message, Spin, Checkbox } from "antd";
 import { LockClosedIcon } from "@heroicons/react/24/outline";
 import GreenBG from "../Image/Green-BG.png"
 import {
@@ -10,7 +10,6 @@ import {
 } from "../app/features/api/authApiSlice";
 import { storeLoginData } from "../app/features/authSlice";
 import { useState } from "react";
-import {Checkbox } from 'antd';
 
 const Footer = () => {
   return (
@@ -68,7 +67,7 @@ const Login = () => {
       }
     }
   };
-  
+
   const handleSavePasswordChange = () => {
     setSavePassword(!savePassword);
   };
@@ -110,7 +109,7 @@ const Login = () => {
         navigate("/");
       });
     }
-    
+
 
     // dispatching login api call
     login({ username, password }).then((res) => {
@@ -146,7 +145,7 @@ const Login = () => {
   return (
     <div className="w-screen h-screen flex bg-gray-100" >
       <div className="flex-1 flex items-start justify-start">
-      <img src={GreenBG} alt="Green Background" style={{ width: '154vh', height: '100vh' }}/>
+        <img src={GreenBG} alt="Green Background" style={{ width: '154vh', height: '100vh' }} />
       </div>
       <main className="w-screen flex justify-end items-center">
         <div className="w-[50vh] sm:w-[450px] h-[100vh] bg-white p-4 sm:px-8 sm:py-10 rounded-md shadow-lg flex flex-col items-center justify-center ">
@@ -177,7 +176,7 @@ const Login = () => {
               setPassword(e.target.value);
             }}
           />
-          <div className="flex items-center mt-2">
+          <div className="items-start justify-start">
             <Checkbox checked={savePassword} onChange={handleSavePasswordChange}>
               Save Password
             </Checkbox>
