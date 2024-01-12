@@ -168,17 +168,19 @@ const Login = () => {
             }}
           />
           <div className="flex items-center mt-2">
-            <Checkbox checked={savePassword} onChange={handleSavePasswordChange}>
+            <Checkbox 
+              checked={savePassword} 
+              onChange={handleSavePasswordChange}
+              >
               Save Password
             </Checkbox>
           </div>
-
+            
           <Button
             type="primary"
             loading={result.isLoading || signupResult.isLoading}
             onClick={handleLoginClick}
-            icon={<LockClosedIcon className="sm:w-5 sm:h-5 w-4 h-4" />}
-            className="flex justify-center items-center gap-1 font-bold sm:text-lg mx-auto w-[50%] mt-4"
+            className=" bg-green-900 flex justify-center items-center gap-1 font-bold sm:text-lg mx-auto w-[25%] mt-4"
           >
             {result.isLoading || signupResult.isLoading ? "Verifying..." : "Login"}
           </Button>
