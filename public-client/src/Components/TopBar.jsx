@@ -25,6 +25,7 @@ import {
   UsersIcon,
   Cog6ToothIcon,
   InformationCircleIcon,
+  Squares2X2Icon,
   BellIcon,
   PowerIcon,
 } from "@heroicons/react/24/outline";
@@ -254,6 +255,24 @@ const TopBar = () => {
               <ChevronRightIcon className="w-5 h-5 text-primary" />
             </div>
           )}
+
+          {auth.userData.permissions.suppliers.includes("R") && (
+            <div
+              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/category" && "text-white bg-primary"
+                }`}
+              onClick={() => {
+                // dispatch(toggleDrawer());
+                navigate("/category");
+              }}
+            >
+              <div className="flex items-center justify-center gap-x-3">
+                <Squares2X2Icon className="w-6 h-6" />
+                <span className="font-bold ">Category</span>
+              </div>
+              <ChevronRightIcon className="w-5 h-5 text-primary" />
+            </div>
+          )}
+
 
           {auth.userData.role === "Admin" && (
             <div

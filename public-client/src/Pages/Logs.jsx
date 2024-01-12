@@ -122,7 +122,7 @@ const Logs = () => {
             okText="Yes"
             cancelText="No"
           >
-            <Button type="primary" danger loading={deleteResult.isLoading}>
+            <Button className="mr-20" type="primary" danger loading={deleteResult.isLoading}>
               Delete All Marked Logs
             </Button>
           </Popconfirm>

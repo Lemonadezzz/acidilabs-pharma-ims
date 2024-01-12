@@ -10,6 +10,7 @@ import Items from "./Pages/Items";
 import Orders from "./Pages/Orders";
 import Returns from "./Pages/Returns";
 import Vendors from "./Pages/Vendors";
+import Category from "./Pages/Category";
 import Logs from "./Pages/Logs";
 import Users from "./Pages/Users";
 // import Archives from "./Pages/Archives";
@@ -53,6 +54,7 @@ const App = () => {
             {/* <Route path="/archives" element={<Archives />} /> */}
             <Route path="/returns" element={<Returns />} />
             <Route path="/vendors" element={<Vendors />} />
+            <Route path="/category" element={<Category />} />
             <Route path="/logs" element={<Logs />} />
             <Route path="/users" element={<Users />} />
           </Route>

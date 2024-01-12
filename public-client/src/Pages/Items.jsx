@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { useSearchParams } from "react-router-dom";
+import { ShoppingCartIcon, ArchiveBoxArrowDownIcon, PencilIcon, EyeIcon } from "@heroicons/react/24/outline";
 import {
   Button,
   Input,
@@ -10,6 +11,8 @@ import {
   Select,
   Spin,
   Table,
+  Divider,
+  Tooltip
 } from "antd";
 import {
   useAddCategoryMutation,
@@ -22,22 +25,23 @@ import {
   useUpdateItemMutation,
 } from "../app/features/api/itemsApiSlice";
 import ItemsHeader from "../Components/Items/ItemsHeader";
-import { QrReader } from "react-qr-reader";
+// import { QrReader } from "react-qr-reader";
 import { useSelector } from "react-redux";
-import { PencilIcon } from "@heroicons/react/24/outline";
 
 const Items = () => {
   const auth = useSelector((state) => state.auth);
   const [searchParams] = useSearchParams();
-
+  console.log("hello");
   // local states
   const [page, setPage] = useState(1);
   const [sortby, setSortby] = useState("createdAt");
   const [sortorder, setSortorder] = useState("desc");
   const [searchText, setSearchText] = useState(searchParams.get("sku"));
-  const [isSearchQrModalVisible, setIsSearchQrModalVisible] = useState(false);
+  // const [isSearchQrModalVisible, setIsSearchQrModalVisible] = useState(false);
   const [isUpdateModalVisible, setIsUpdateModalVisible] = useState(false);
   const [isUseModalVisible, setIsUseModalVisible] = useState(false);
+  const [isDetailsModalVisible, setIsDetailsModalVisible] = useState(false);
+  const [selectedItemDetails, setSelectedItemDetails] = useState(null);
   const [editSelecedItemId, setEditSelecedItemId] = useState(null);
   const [editSelecedItem, setEditSelecedItem] = useState(null);
   const [useSelecedItem, setUseSelecedItem] = useState(null);
@@ -53,6 +57,7 @@ const Items = () => {
   const [category, setCategory] = useState("");
   const [stockWarningQuantity, setStockWarningQuantity] = useState(null);
   const [expiryDate, setExpiryDate] = useState("");
+  const [batchNumber, setBatchNumber] = useState("");
 
   const { isLoading, data } = useGetItemsQuery({
     page,
@@ -124,6 +129,13 @@ const Items = () => {
     });
   };
 
+  const handleViewDetails = (item) => {
+    // Perform any logic to fetch additional details if needed
+    setSelectedItemDetails(item);
+    setIsDetailsModalVisible(true);
+  };
+
+
   const handleUpdateItem = () => {
     if (!editSelecedItemId) return message.error("Please try again!");
     if (
@@ -184,67 +196,103 @@ const Items = () => {
       key: "qty",
     },
     {
-      title: "Category",
-      dataIndex: "category",
-      key: "category",
-      responsive: ["md"],
+      title: "UoM"
     },
     {
-      title: "Expiry",
+      title: "Batch No."
+    },
+    // {
+    //   title: "Category",
+    //   dataIndex: "category",
+    //   key: "category",
+    //   responsive: ["md"],
+    // },
+    {
+      title: "Expiry Date",
       dataIndex: "expiry_date",
       key: "expiry_date",
       render: (date) => <p>{format(new Date(date), "dd-MM-yyyy")}</p>,
       responsive: ["md"],
     },
     {
-      title: "Shelf",
-      dataIndex: "shelf",
-      key: "shelf",
+      title: "Price"
     },
+    // {
+    //   title: "Shelf",
+    //   dataIndex: "shelf",
+    //   key: "shelf",
+    // },
     {
-      title: "Action",
+      title: "Actions",
       key: "action",
       render: (_, item) => (
         <div>
-          <Button
+          {/* <Button
             type="primary"
             onClick={() => {
               setUseSelecedItem(item);
               setIsUseModalVisible(true);
             }}
           >
-            Use
-          </Button>
+          </Button> */}
+          <Tooltip title="Record Sale" >
+            <Button className="hidden md:inline-block" >
+              <ShoppingCartIcon className="h-5 w-5" />
+            </Button>
+          </Tooltip>
 
-          <Button
-            className="ml-2 hidden md:inline-block"
-            onClick={() => {
-              setEditSelecedItemId(item._id);
-              setName(item.name);
-              setQty(item.qty);
-              setSku(item.sku);
-              setShelf(item.shelf);
-              setStatus(item.status);
-              setCategory(item.category);
-              setStockWarningQuantity(item.low_stock_warning_qty);
-              // date would be in string format ("yyyy-MM-dd")
-              setExpiryDate(
-                item.expiry_date
-                  ? format(new Date(item.expiry_date), "yyyy-MM-dd")
-                  : ""
-              );
-              setIsUpdateModalVisible(true);
-            }}
-            disabled={
-              !(
-                auth.permissions.items.includes("W") ||
-                auth.permissions.items.includes("D")
-              )
-            }
-          >
-             <PencilIcon className="h-5 w-5 " />
-            
-          </Button>
+          <Tooltip title="Restock" >
+            <Button
+              className="ml-2 hidden md:inline-block"
+              onClick={() => {
+
+              }}
+            >
+              <ArchiveBoxArrowDownIcon className="h-5 w-5" />
+            </Button>
+          </Tooltip>
+
+          <Tooltip title="Edit Item" >
+            <Button
+              className="ml-2 hidden md:inline-block"
+              onClick={() => {
+                setEditSelecedItemId(item._id);
+                setName(item.name);
+                setQty(item.qty);
+                setSku(item.sku);
+                setShelf(item.shelf);
+                setStatus(item.status);
+                setCategory(item.category);
+                setStockWarningQuantity(item.low_stock_warning_qty);
+                // date would be in string format ("yyyy-MM-dd")
+                setExpiryDate(
+                  item.expiry_date
+                    ? format(new Date(item.expiry_date), "yyyy-MM-dd")
+                    : ""
+                );
+                setIsUpdateModalVisible(true);
+              }}
+              disabled={
+                !(
+                  auth.permissions.items.includes("W") ||
+                  auth.permissions.items.includes("D")
+                )
+              }
+            >
+              <PencilIcon className="h-5 w-5" />
+
+            </Button>
+          </Tooltip>
+
+          <Tooltip title="View Details">
+            <Button
+              className="ml-2 hidden md:inline-block"
+              onClick={() => handleViewDetails(item)}
+            >
+              <EyeIcon className="h-5 w-5" />
+            </Button>
+          </Tooltip>
+
         </div>
       ),
     },
@@ -255,7 +303,7 @@ const Items = () => {
       <ItemsHeader
         searchText={searchText}
         setSearchText={setSearchText}
-        setIsSearchQrModalVisible={setIsSearchQrModalVisible}
+        // setIsSearchQrModalVisible={setIsSearchQrModalVisible}
         setSortby={setSortby}
         setSortorder={setSortorder}
       />
@@ -318,11 +366,18 @@ const Items = () => {
         <Input
           placeholder="Enter Name"
           value={name}
-          className="my-2"
+          className="my-1"
           onChange={(e) => setName(e.target.value)}
         />
 
-        <div className="flex my-2">
+        <Input
+          placeholder="Enter Batch No."
+          className="my-1"
+          value={batchNumber}
+          onChange={(e) => setBatchNumber(e.target.value)}
+        />
+
+        <div className="flex my-1">
           <Input
             placeholder="Enter Quantity"
             value={qty}
@@ -330,22 +385,91 @@ const Items = () => {
             type="number"
           />
           <Input
-            placeholder="Enter Shelf"
-            value={shelf}
-            onChange={(e) => setShelf(e.target.value)}
-            className="ml-2"
+            placeholder="Enter UoM"
+            className="ml-1"
           />
         </div>
 
+        <div className="flex my-1">
+
+          <Input
+            placeholder="Enter Price"
+            className="mt-1 mb-1 mr-1"
+          />
+
+          <Input
+            placeholder="Enter expiry date (MM-DD-YYYY)"
+            className="mt-1 mb-1"
+            type="date"
+            value={expiryDate}
+            onChange={(e) => setExpiryDate(e.target.value)}
+          />
+
+        </div>
+
+        <div className="flex my-1 justify-around gap-x-1">
+          <Input
+            placeholder="Enter Minimum Inventory Level"
+            type="number"
+            className="mt-1 mb-1"
+            value={stockWarningQuantity}
+            onChange={(e) => setStockWarningQuantity(e.target.value)}
+          />
+
+          <Input
+            placeholder="Status"
+            className="mt-1 mb-1"
+          />
+          {/* dropdown? */}
+
+        </div>
+
+        <Divider style={{ borderColor: '#52bd94' }} />
+
+        <span style={{ fontWeight: 'bold' }}>Additional Details</span>
+
         <Input
-          placeholder="Enter expiry date (MM-DD-YYYY)"
-          className="my-2"
-          type="date"
-          value={expiryDate}
-          onChange={(e) => setExpiryDate(e.target.value)}
+          placeholder="Enter Supplier"
+          className="my-1"
         />
 
-        <div className="flex my-3 justify-around gap-x-2">
+        <Input
+          placeholder="Enter Manufacturer"
+          className="my-1"
+        />
+
+        <div className="flex my-1 justify-around gap-x-1">
+          <Input
+            placeholder="Enter Dosage Form"
+            className="mt-1 mb-1"
+          />
+
+          <Input
+            placeholder="Prescription Required?"
+            className="mt-1 mb-1"
+          />
+        </div>
+
+        <div className="flex my-1 justify-around gap-x-1">
+          <Input
+            placeholder="Enter Strength"
+            className="mt-1 mb-1"
+          />
+
+          <Input
+            placeholder="Enter Active Ingredient"
+            className="mt-1 mb-1"
+          />
+        </div>
+
+        <Input.TextArea
+          placeholder="Enter Storage Conditions"
+          rows={2}
+          className="my-1"
+        />
+
+
+        {/* <div className="flex my-3 justify-around gap-x-2">
           <Select
             placeholder="Select Category"
             onChange={(e) => setCategory(e)}
@@ -384,16 +508,36 @@ const Items = () => {
           <Select.Option value="on stock">On stock</Select.Option>
           <Select.Option value="low on stock">Low on stock</Select.Option>
           <Select.Option value="out of stock">Out of stock</Select.Option>
-        </Select>
+        </Select> */}
 
-        <Input
-          placeholder="Minimum stock before warning"
-          type="number"
-          className="mt-2 mb-4"
-          value={stockWarningQuantity}
-          onChange={(e) => setStockWarningQuantity(e.target.value)}
-        />
+
       </Modal>
+      <Modal
+        title="Item Details"
+        visible={isDetailsModalVisible}
+        onCancel={() => setIsDetailsModalVisible(false)}
+        footer={[
+          <Button
+            key="back"
+            onClick={() => setIsDetailsModalVisible(false)}
+          >
+            Close
+          </Button>,
+        ]}
+      >
+        {selectedItemDetails && (
+          <div>
+            {/* Display all the item details here */}
+            <p>Status: {selectedItemDetails.status}</p>
+            <p>SKU: {selectedItemDetails.sku}</p>
+            <p>Name: {selectedItemDetails.name}</p>
+            <p>Quantity: {selectedItemDetails.qty}</p>
+            <p>Date: {selectedItemDetails.expiry_date}</p>
+            {/* Add more details as needed */}
+          </div>
+        )}
+      </Modal>
+
 
       {/* use modal */}
       <Modal
@@ -436,7 +580,7 @@ const Items = () => {
       </Modal>
 
       {/* search qr modal */}
-      <Modal
+      {/* <Modal
         title="QR Scanner"
         open={isSearchQrModalVisible}
         onCancel={() => {
@@ -473,7 +617,7 @@ const Items = () => {
           }}
           style={{ width: "100%" }}
         />
-      </Modal>
+      </Modal> */}
     </main>
   );
 };

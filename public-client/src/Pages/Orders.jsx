@@ -329,7 +329,7 @@ const Orders = () => {
           columns={columns}
           dataSource={data.orders}
           className="mt-4 md:mt-8"
-          pagination={false}
+          pagination={true}
           key={(order) => order._id}
         />
       )}
@@ -341,7 +341,7 @@ const Orders = () => {
           columns={columns}
           dataSource={searchData.orders}
           className="mt-4 md:mt-8"
-          pagination={false}
+          pagination={true}
           key={(item) => item._id}
         />
       )}
