@@ -1,22 +1,18 @@
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { useSearchParams } from "react-router-dom";
-import { ShoppingCartIcon, ArchiveBoxArrowDownIcon, PencilIcon, EyeIcon } from "@heroicons/react/24/outline";
+import { ShoppingCartIcon, CubeAddIcon, EyeOpenIcon, EditIcon, Tooltip, Button, Spinner } from "evergreen-ui"
 import {
-  Button,
+
   Input,
   message,
   Modal,
-  Popconfirm,
-  Select,
   Spin,
   Table,
-  Divider,
-  Tooltip
+  Divider
 } from "antd";
 import {
   useAddCategoryMutation,
-  // useArchiveItemMutation,
   useDeleteItemMutation,
   useGetCategoriesQuery,
   useGetItemsQuery,
@@ -25,7 +21,7 @@ import {
   useUpdateItemMutation,
 } from "../app/features/api/itemsApiSlice";
 import ItemsHeader from "../Components/Items/ItemsHeader";
-// import { QrReader } from "react-qr-reader";
+
 import { useSelector } from "react-redux";
 
 const Items = () => {
@@ -37,7 +33,6 @@ const Items = () => {
   const [sortby, setSortby] = useState("createdAt");
   const [sortorder, setSortorder] = useState("desc");
   const [searchText, setSearchText] = useState(searchParams.get("sku"));
-  // const [isSearchQrModalVisible, setIsSearchQrModalVisible] = useState(false);
   const [isUpdateModalVisible, setIsUpdateModalVisible] = useState(false);
   const [isUseModalVisible, setIsUseModalVisible] = useState(false);
   const [isDetailsModalVisible, setIsDetailsModalVisible] = useState(false);
@@ -100,15 +95,6 @@ const Items = () => {
     });
   };
 
-  // const handleArchive = (id) => {
-  //   archiveItem({ id, isArchived: true }).then((res) => {
-  //     if (res.data?.success) {
-  //       message.success("Item archived successfully!");
-  //     } else {
-  //       message.error("Something went wrong!");
-  //     }
-  //   });
-  // };
 
   const handleUseItem = () => {
     if (!usedAmount) return message.error("Please enter quantity to use");
@@ -201,12 +187,6 @@ const Items = () => {
     {
       title: "Batch No."
     },
-    // {
-    //   title: "Category",
-    //   dataIndex: "category",
-    //   key: "category",
-    //   responsive: ["md"],
-    // },
     {
       title: "Expiry Date",
       dataIndex: "expiry_date",
@@ -217,42 +197,30 @@ const Items = () => {
     {
       title: "Price"
     },
-    // {
-    //   title: "Shelf",
-    //   dataIndex: "shelf",
-    //   key: "shelf",
-    // },
     {
       title: "Actions",
       key: "action",
       render: (_, item) => (
         <div>
-          {/* <Button
-            type="primary"
-            onClick={() => {
-              setUseSelecedItem(item);
-              setIsUseModalVisible(true);
-            }}
-          >
-          </Button> */}
-          <Tooltip title="Record Sale" >
-            <Button className="hidden md:inline-block" >
-              <ShoppingCartIcon className="h-5 w-5" />
+
+          <Tooltip content="Record Sale" >
+            <Button className="hidden md:inline-block">
+              <ShoppingCartIcon size={20} style={{ display: 'flex' }} />
             </Button>
           </Tooltip>
 
-          <Tooltip title="Restock" >
+          <Tooltip content="Restock" >
             <Button
               className="ml-2 hidden md:inline-block"
               onClick={() => {
 
               }}
             >
-              <ArchiveBoxArrowDownIcon className="h-5 w-5" />
+              <CubeAddIcon size={20} style={{ display: 'flex' }} />
             </Button>
           </Tooltip>
 
-          <Tooltip title="Edit Item" >
+          <Tooltip content="Edit Item" >
             <Button
               className="ml-2 hidden md:inline-block"
               onClick={() => {
@@ -279,17 +247,17 @@ const Items = () => {
                 )
               }
             >
-              <PencilIcon className="h-5 w-5" />
+              <EditIcon size={20} style={{ display: 'flex' }} />
 
             </Button>
           </Tooltip>
 
-          <Tooltip title="View Details">
+          <Tooltip content="View Details">
             <Button
               className="ml-2 hidden md:inline-block"
               onClick={() => handleViewDetails(item)}
             >
-              <EyeIcon className="h-5 w-5" />
+              <EyeOpenIcon size={20} style={{ display: 'flex' }}  />
             </Button>
           </Tooltip>
 
@@ -303,13 +271,12 @@ const Items = () => {
       <ItemsHeader
         searchText={searchText}
         setSearchText={setSearchText}
-        // setIsSearchQrModalVisible={setIsSearchQrModalVisible}
         setSortby={setSortby}
         setSortorder={setSortorder}
       />
       {(isLoading || isSearchDataLoading) && (
         <div className="mt-8 mx-auto flex justify-center items-center min-h-[500px]">
-          <Spin size="large" />
+          <Spinner size="large" />
         </div>
       )}
       {!isLoading && !isSearchDataLoading && !searchText && (
@@ -579,45 +546,6 @@ const Items = () => {
         />
       </Modal>
 
-      {/* search qr modal */}
-      {/* <Modal
-        title="QR Scanner"
-        open={isSearchQrModalVisible}
-        onCancel={() => {
-          setIsSearchQrModalVisible((prev) => !prev);
-        }}
-        footer={[
-          <Button
-            key="back"
-            onClick={() => {
-              setIsSearchQrModalVisible((prev) => !prev);
-            }}
-          >
-            Cancel
-          </Button>,
-        ]}
-      >
-        <QrReader
-          scanDelay={1000}
-          onResult={(result, error) => {
-            if (!!result) {
-              console.log(result?.text);
-              setSearchText(result?.text);
-              setIsSearchQrModalVisible((prev) => !prev);
-              message.success("QR code scanned successfully!");
-            }
-          }}
-          constraints={{
-            facingMode: "environment",
-          }}
-          onError={(error) => {
-            console.info(error);
-            setIsSearchQrModalVisible((prev) => !prev);
-            message.error("QR code scanning failed! Please try again.");
-          }}
-          style={{ width: "100%" }}
-        />
-      </Modal> */}
     </main>
   );
 };

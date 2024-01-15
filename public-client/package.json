@@ -8,10 +8,10 @@
     "antd": "^5.0.1",
     "chart.js": "^4.0.1",
     "date-fns": "^2.29.3",
+    "evergreen-ui": "^7.1.9",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.0.1",
     "react-dom": "^18.2.0",
-    "react-qr-reader": "^3.0.0-beta-1",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1"
