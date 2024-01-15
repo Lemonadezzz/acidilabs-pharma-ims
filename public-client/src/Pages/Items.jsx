@@ -316,7 +316,7 @@ const Items = () => {
           <Button
             key="submit"
             type="primary"
-            style={{ backgroundColor: "#22c55e" }}
+            style={{ backgroundColor: "#58bf97" }}
             loading={updateResult.isLoading}
             onClick={handleUpdateItem}
           >
