@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Button, Input, message, Modal, Radio, Select, Divider } from "antd";
-import { PlusIcon } from "@heroicons/react/24/outline";
+import { Input, Modal, message, Radio, Button, Select, Divider } from "antd";
+import {SmallPlusIcon} from "evergreen-ui"
 
 import {
   useAddCategoryMutation,
@@ -72,6 +72,7 @@ const ItemsHeader = ({
             type="primary"
             className="font-bold bg-green-800 flex items-center justify-center gap-x-2"
             onClick={() => setIsCreateItemModalVisible((prev) => !prev)}
+            style={{color: "#ffffff", borderRadius: "8px", fontSize: "14px"}}
             disabled={
               !(
                 auth.permissions.items.includes("W") ||
@@ -79,7 +80,7 @@ const ItemsHeader = ({
               )
             }
           >
-            <PlusIcon className="h-5 w-5 " />
+            <SmallPlusIcon className="h-5 w-5 " />
             <span>Create Item</span>
           </Button>
 
@@ -115,12 +116,6 @@ const ItemsHeader = ({
               Search
             </Button>
           </Input.Group>
-          {/* <Button
-            type="dashed"
-            onClick={() => setIsSearchQrModalVisible((prev) => !prev)}
-          >
-            <QrCodeIcon className="h-5 w-5" />
-          </Button> */}
         </div>
       </div>
 
@@ -138,7 +133,7 @@ const ItemsHeader = ({
           <Button
             key="submit"
             type="primary"
-            style={{ backgroundColor: "#58bf97" }}
+            style={{ backgroundColor: "#166534", color: "white" }}
             loading={result.isLoading}
             onClick={handleCreateItem}
           >
