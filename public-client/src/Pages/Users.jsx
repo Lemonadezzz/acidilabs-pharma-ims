@@ -1,4 +1,4 @@
-import { PlusIcon } from "@heroicons/react/24/outline";
+import { TrashIcon, Tooltip, PlusIcon } from "evergreen-ui";
 import {
   Button,
   Input,
@@ -175,9 +175,11 @@ const Users = () => {
           okText="Yes"
           cancelText="No"
         >
+          <Tooltip content="Delete">
           <Button danger className="ml-2">
-            Delete
+            <TrashIcon />
           </Button>
+          </Tooltip>
         </Popconfirm>
       ),
     },

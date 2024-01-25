@@ -1,3 +1,4 @@
+import { TrashIcon, Tooltip } from "evergreen-ui";
 import { Button, message, Popconfirm, Spin, Table } from "antd";
 import { format } from "date-fns";
 import { useSelector } from "react-redux";
@@ -78,13 +79,15 @@ const Vendors = () => {
             okText="Yes"
             cancelText="No"
           >
+            <Tooltip content="Delete">
             <Button
               danger
               className="ml-2"
               disabled={!auth.permissions.suppliers.includes("D")}
             >
-              Delete
+             <TrashIcon />
             </Button>
+            </Tooltip>
           </Popconfirm>
         </div>
       ),

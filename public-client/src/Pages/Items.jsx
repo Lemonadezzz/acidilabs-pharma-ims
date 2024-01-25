@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { useSearchParams } from "react-router-dom";
-import { ShoppingCartIcon, CubeAddIcon, EyeOpenIcon, EditIcon, Tooltip, Button, Spinner } from "evergreen-ui"
+import { ShoppingCartIcon, CubeAddIcon, EyeOpenIcon, EditIcon, Tooltip, Spinner } from "evergreen-ui"
 import {
-
   Input,
   message,
   Modal,
   Spin,
   Table,
-  Divider
+  Divider,
+  Button
 } from "antd";
 import {
   useAddCategoryMutation,
@@ -311,13 +311,14 @@ const Items = () => {
           <Button
             key="back"
             onClick={() => setIsUpdateModalVisible((prev) => !prev)}
+            style={{ marginRight: '8px' }}
           >
             Cancel
           </Button>,
           <Button
             key="submit"
             type="primary"
-            style={{ backgroundColor: "#22c55e" }}
+            style={{ backgroundColor: "#166534", color: "white" }}
             loading={updateResult.isLoading}
             onClick={handleUpdateItem}
           >

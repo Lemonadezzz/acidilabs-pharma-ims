@@ -143,60 +143,61 @@ const Login = () => {
   };
 
   return (
-    <div className="w-screen h-screen flex bg-gray-100" >
-      <div className="flex-1 flex items-start justify-start">
-        <img src={GreenBG} alt="Green Background" style={{ width: '154vh', height: '100vh' }} />
+    <div className="relative w-screen h-screen flex bg-gray-100">
+  <div className="absolute inset-0 flex items-start justify-start">
+    <img src={GreenBG} alt="Green Background" style={{ width: '80%', height: '100%' }} />
+  </div>
+  <main className="relative w-screen flex justify-end items-center">
+    <div className="w-full sm:w-[70%] md:w-[50%] lg:w-[30%] xl:w-[25%] h-full bg-white p-4 sm:px-8 sm:py-10 rounded-md shadow-lg flex flex-col items-center justify-center">
+      <h3 className="text-primary text-center my-6 sm:mt-6 sm:mb-10">
+        AcidiLabs Pharma IMS v1.0
+      </h3>
+      <Input
+        placeholder="Username"
+        type="text"
+        className="my-3"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <Input.Password
+        placeholder={inputPlaceholder}
+        status={inputStatus}
+        type="text"
+        className="mt-3 mb-6"
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            handleLoginClick();
+          } else {
+            handleCapsLock(e);
+          }
+        }}
+        value={password}
+        onChange={(e) => {
+          setPassword(e.target.value);
+        }}
+      />
+      <div className="items-start justify-start">
+        <Checkbox
+          checked={savePassword}
+          onChange={handleSavePasswordChange}
+        >
+          Save Password
+        </Checkbox>
       </div>
-      <main className="w-screen flex justify-end items-center">
-        <div className="w-[50vh] sm:w-[450px] h-[100vh] bg-white p-4 sm:px-8 sm:py-10 rounded-md shadow-lg flex flex-col items-center justify-center ">
-          <h3 className="text-primary text-center my-6 sm:mt-6 sm:mb-10">
-            AcidiLabs Pharma IMS v1.0
-          </h3>
-          <Input
-            placeholder="Username"
-            type="text"
-            className="my-3"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <Input.Password
-            placeholder={inputPlaceholder}
-            status={inputStatus}
-            type="text"
-            className="mt-3 mb-6"
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                handleLoginClick();
-              } else {
-                handleCapsLock(e);
-              }
-            }}
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-          <div className="items-start justify-start">
-            <Checkbox 
-              checked={savePassword} 
-              onChange={handleSavePasswordChange}
-              >
-              Save Password
-            </Checkbox>
-          </div>
-            
-          <Button
-            type="primary"
-            loading={result.isLoading || signupResult.isLoading}
-            onClick={handleLoginClick}
-            className=" bg-green-900 flex justify-center items-center gap-1 font-bold sm:text-lg mx-auto w-[25%] mt-4"
-          >
-            {result.isLoading || signupResult.isLoading ? "Verifying..." : "Login"}
-          </Button>
-        </div>
-      </main>
-      <Footer />
+
+      <Button
+        type="primary"
+        loading={result.isLoading || signupResult.isLoading}
+        onClick={handleLoginClick}
+        className="bg-green-900 flex justify-center items-center gap-1 font-bold sm:text-lg mx-auto w-full sm:w-[75%] lg:w-[50%] xl:w-[40%] mt-4"
+      >
+        {result.isLoading || signupResult.isLoading ? "Verifying..." : "Login"}
+      </Button>
     </div>
+  </main>
+  <Footer />
+</div>
+
 
   );
 };
