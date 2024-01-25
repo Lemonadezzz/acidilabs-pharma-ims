@@ -37,13 +37,13 @@ const Logs = () => {
   const getRibbonColor = (action) => {
     switch (action) {
       case "CREATE":
-        return "green";
+        return "#5ebd00 ";
       case "UPDATE":
-        return "cyan";
+        return "#9b00b4";
       case "DELETE":
         return "red";
       default:
-        return "magenta";
+        return "#9f5700";
     }
   };
 
@@ -61,7 +61,7 @@ const Logs = () => {
         <Space size="middle">
           <span
             style={{
-              color: record.type === "AUTH" ? "magenta" : getRibbonColor(text),
+              color: record.type === "AUTH" ? "#9f5700" : getRibbonColor(text),
             }}
           >
             {record.type === "AUTH" ? "AUTH" : text}
@@ -74,24 +74,24 @@ const Logs = () => {
       dataIndex: "message",
       key: "message",
     },
-    {
-      title: "Actions",
-      key: "actions",
-      render: (text, record) => (
-        <Space size="middle">
-          <TrashIcon
-            className="w-6 h-6 cursor-pointer text-red-500"
-            onClick={() => {
-              deleteLog({ id: record._id }).then((res) => {
-                if (res.data.success) {
-                  message.success("Log deleted");
-                }
-              });
-            }}
-          />
-        </Space>
-      ),
-    },
+    // {
+    //   title: "Actions",
+    //   key: "actions",
+    //   render: (text, record) => (
+    //     <Space size="middle">
+    //       <TrashIcon
+    //         className="w-6 h-6 cursor-pointer text-red-500"
+    //         onClick={() => {
+    //           deleteLog({ id: record._id }).then((res) => {
+    //             if (res.data.success) {
+    //               message.success("Log deleted");
+    //             }
+    //           });
+    //         }}
+    //       />
+    //     </Space>
+    //   ),
+    // },
   ];
 
   const dataSource = data?.logs.map((log) => ({
