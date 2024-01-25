@@ -1,3 +1,4 @@
+import { TrashIcon, Tooltip } from "evergreen-ui";
 import { Button, Input, message, Popconfirm, Select, Spin, Table } from "antd";
 import { format } from "date-fns";
 import { useState } from "react";
@@ -151,9 +152,11 @@ const Returns = () => {
             okText="Yes"
             cancelText="No"
           >
+            <Tooltip content="Delete">
             <Button danger disabled={!auth.permissions.returns.includes("D")}>
-              Delete
+              <TrashIcon />
             </Button>
+            </Tooltip>
           </Popconfirm>
         </div>
       ),

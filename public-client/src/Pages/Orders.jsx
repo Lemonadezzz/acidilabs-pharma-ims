@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import {EditIcon, Tooltip, ResetIcon} from "evergreen-ui"
 import {
   Button,
   Input,
@@ -243,6 +244,7 @@ const Orders = () => {
       key: "actions",
       render: (_, item) => (
         <div>
+          <Tooltip content="Return Order">
           <Button
             type="primary"
             onClick={() => {
@@ -256,8 +258,11 @@ const Orders = () => {
               )
             }
           >
-            Return
+           <ResetIcon size={20} style={{display: 'flex'}}/>
           </Button>
+          </Tooltip>
+
+            <Tooltip content="Edit Order">
           <Button
             onClick={() => {
               setEditOrderId(item._id);
@@ -282,8 +287,9 @@ const Orders = () => {
               )
             }
           >
-            Edit
+            <EditIcon size={20} style={{ display: 'flex' }} />
           </Button>
+          </Tooltip>
           {/* <Popconfirm
             placement="bottomRight"
             title={"Are you sure to archive this record?"}

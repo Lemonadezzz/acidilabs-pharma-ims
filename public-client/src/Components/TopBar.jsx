@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { differenceInDays, format } from "date-fns";
+import {MenuIcon, NotificationsIcon,UserIcon, PowerIcon,ChevronRightIcon, CrossIcon, DoughnutChartIcon, FullStackedChartIcon, TagIcon, TruckIcon, ThirdPartyIcon, NewGridItemIcon, HistoryIcon, PeopleIcon} from "evergreen-ui"
 import {
   Avatar,
   Badge,
@@ -8,26 +9,11 @@ import {
   message,
   Popconfirm,
   Space,
-  Tooltip,
+  Tooltip
 } from "antd";
 import {
-  UserIcon,
   Bars3CenterLeftIcon,
-  XMarkIcon,
-  ChevronRightIcon,
-  IdentificationIcon,
-  HomeIcon,
-  ListBulletIcon,
-  TruckIcon,
-  HashtagIcon,
-  ServerStackIcon,
-  TagIcon,
-  UsersIcon,
-  Cog6ToothIcon,
-  InformationCircleIcon,
-  Squares2X2Icon,
   BellIcon,
-  PowerIcon,
 } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -42,7 +28,7 @@ import { useGetWarningQuery } from "../app/features/api/itemsApiSlice";
 // custom close icon for drawer
 const CustomCloseIcon = () => (
   <span className="flex justify-between items-center p-2 cursor-pointer hover:bg-primary transition-all duration-150 ease-out hover:text-white rounded-full">
-    <XMarkIcon className="w-6 h-6" />
+    <CrossIcon className="w-6 h-6" />
   </span>
 );
 
@@ -82,7 +68,7 @@ const TopBar = () => {
             className="flex justify-between items-center p-2 cursor-pointer hover:bg-primary transition-all duration-150 ease-out hover:text-white rounded-full"
             onClick={() => dispatch(toggleDrawer())}
           >
-            <Bars3CenterLeftIcon className="w-7 h-7" />
+            <MenuIcon className="w-7 h-7" />
           </span>
           <span className="md:text-lg lg:text-xl font-bold capitalize">
             {location.pathname === "/"
@@ -97,9 +83,10 @@ const TopBar = () => {
         <div>
           <div className="flex items-center gap-x-3">
             <Badge dot={warningItems?.items?.length !== 0}>
-              <BellIcon
+              <NotificationsIcon
                 className="w-6 h-6 md:w-6 md:h-6 cursor-pointer"
                 onClick={() => dispatch(toggleNotificationDrawer())}
+                style={{ fill: '#317159', stroke: 'white', strokeWidth: 1 }}
               />
             </Badge>
             <div className="relative">
@@ -161,7 +148,6 @@ const TopBar = () => {
       <Drawer
         title={
           <div className="flex items-center">
-
             <span className="font-bold text-primary text-xl md:text-1xl">
               AcidiLabs Pharma IMS v1.0
             </span>
@@ -183,7 +169,7 @@ const TopBar = () => {
             }}
           >
             <div className="flex items-center justify-center gap-x-3">
-              <HomeIcon className="w-6 h-6" />
+              <DoughnutChartIcon className="w-6 h-6" />
               <span className="font-bold ">Dashboard</span>
             </div>
             <ChevronRightIcon className="w-5 h-5 text-primary" />
@@ -199,7 +185,7 @@ const TopBar = () => {
               }}
             >
               <div className="flex items-center justify-center gap-x-3">
-                <ListBulletIcon className="w-6 h-6" />
+                <FullStackedChartIcon className="w-6 h-6" />
                 <span className="font-bold ">Items</span>
               </div>
               <ChevronRightIcon className="w-5 h-5 text-primary" />
@@ -249,7 +235,7 @@ const TopBar = () => {
               }}
             >
               <div className="flex items-center justify-center gap-x-3">
-                <IdentificationIcon className="w-6 h-6" />
+                <ThirdPartyIcon className="w-6 h-6" />
                 <span className="font-bold ">Suppliers</span>
               </div>
               <ChevronRightIcon className="w-5 h-5 text-primary" />
@@ -266,7 +252,7 @@ const TopBar = () => {
               }}
             >
               <div className="flex items-center justify-center gap-x-3">
-                <Squares2X2Icon className="w-6 h-6" />
+                <NewGridItemIcon className="w-6 h-6" />
                 <span className="font-bold ">Category</span>
               </div>
               <ChevronRightIcon className="w-5 h-5 text-primary" />
@@ -284,7 +270,7 @@ const TopBar = () => {
               }}
             >
               <div className="flex items-center justify-center gap-x-3">
-                <HashtagIcon className="w-6 h-6" />
+                <HistoryIcon className="w-6 h-6" />
                 <span className="font-bold ">History/Logs</span>
               </div>
               <ChevronRightIcon className="w-5 h-5 text-primary" />
@@ -318,7 +304,7 @@ const TopBar = () => {
               }}
             >
               <div className="flex items-center justify-center gap-x-3">
-                <UsersIcon className="w-6 h-6" />
+                <PeopleIcon className="w-6 h-6" />
                 <span className="font-bold ">User Management</span>
               </div>
               <ChevronRightIcon className="w-5 h-5 text-primary" />
