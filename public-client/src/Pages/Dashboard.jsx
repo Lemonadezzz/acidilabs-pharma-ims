@@ -53,7 +53,6 @@ const Dashboard = () => {
       },
       title: {
         display: true,
-        text: "Items Stock Data",
       },
     },
   };
@@ -118,6 +117,7 @@ const Dashboard = () => {
           </div>
 
           <div className="md:max-w-xl mt-12 mx-auto px-2 mb-6 nd:mb-0">
+          <h3 className="text-slate-600 text-center mt-3 mb-4">Items Stock Data</h3>
             <Bar
               options={options}
               data={{

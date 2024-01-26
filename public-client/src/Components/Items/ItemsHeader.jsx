@@ -155,18 +155,7 @@ const ItemsHeader = ({
               onChange={(e) => setSku(e.target.value)}
             />
           )}
-
-          {/* <Button
-            type="dashed"
-            onClick={() => {
-              setIsCreateItemModalVisible(false);
-              setIsQrModalVisible((prev) => !prev);
-            }}
-          >
-            <QrCodeIcon className="h-5 w-5" />
-          </Button> */}
         </div>
-
         <Input
           placeholder="Enter Name"
           value={name}
@@ -210,8 +199,7 @@ const ItemsHeader = ({
           />
 
         </div>
-
-
+        
         <div className="flex my-1 justify-around gap-x-1">
           <Input
             placeholder="Enter Minimum Inventory Level"

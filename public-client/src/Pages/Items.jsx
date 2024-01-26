@@ -53,6 +53,9 @@ const Items = () => {
   const [stockWarningQuantity, setStockWarningQuantity] = useState(null);
   const [expiryDate, setExpiryDate] = useState("");
   const [batchNumber, setBatchNumber] = useState("");
+  const [uom, setUom] = useState("");
+  const [price, setPrice] =useState("");
+
 
   const { isLoading, data } = useGetItemsQuery({
     page,
@@ -182,10 +185,14 @@ const Items = () => {
       key: "qty",
     },
     {
-      title: "UoM"
+      title: "UoM",
+      dataIndex: "uom",
+      key: "uom"
     },
     {
-      title: "Batch No."
+      title: "Batch No.",
+      dataIndex: "batch",
+      key: "batch"
     },
     {
       title: "Expiry Date",
@@ -195,7 +202,9 @@ const Items = () => {
       responsive: ["md"],
     },
     {
-      title: "Price"
+      title: "Price",
+      dataIndex: "price",
+      key: "price"
     },
     {
       title: "Actions",

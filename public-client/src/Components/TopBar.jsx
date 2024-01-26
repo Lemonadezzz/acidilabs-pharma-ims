@@ -107,18 +107,6 @@ const TopBar = () => {
               {/* profile popup */}
               {visible && (
                 <div className="absolute top-10 bg-white -right-2 md:-right-4 px-3 py-4 md:px-4 z-50">
-                  {/* <Tooltip title="Settings" placement="left">
-                    <span className="flex justify-between items-center p-2 my-2 cursor-pointer hover:bg-primary transition-all duration-150 ease-out hover:text-white rounded-full">
-                      <Cog6ToothIcon className="w-5 h-5 md:w-6 md:h-6" />
-                    </span>
-                  </Tooltip> */}
-
-                  {/* <Tooltip title="About" placement="left">
-                    <span className="flex justify-between items-center p-2 my-2 cursor-pointer hover:bg-primary transition-all duration-150 ease-out hover:text-white rounded-full">
-                      <InformationCircleIcon className="w-5 h-5 md:w-6 md:h-6" />
-                    </span>
-                  </Tooltip> */}
-
                   <Tooltip title="Logout" placement="left">
                     <Popconfirm
                       title="Are you sure you want to logout?"
@@ -161,7 +149,7 @@ const TopBar = () => {
       >
         <div>
           <div
-            className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/" && "text-white bg-primary"
+            className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between bg-white text-primary hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/" && "text-white bg-primary"
               }`}
             onClick={() => {
               // dispatch(toggleDrawer());
@@ -177,7 +165,7 @@ const TopBar = () => {
 
           {auth.userData.permissions.items.includes("R") && (
             <div
-              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname.includes("/items") && "text-white bg-primary"
+              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between bg-white text-primary hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname.includes("/items") && "text-white bg-primary"
                 }`}
               onClick={() => {
                 // dispatch(toggleDrawer());
@@ -194,7 +182,7 @@ const TopBar = () => {
 
           {auth.userData.permissions.orders.includes("R") && (
             <div
-              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/orders" && "text-white bg-primary"
+              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between bg-white text-primary hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/orders" && "text-white bg-primary"
                 }`}
               onClick={() => {
                 navigate("/orders");
@@ -211,7 +199,7 @@ const TopBar = () => {
 
           {auth.userData.permissions.returns.includes("R") && (
             <div
-              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/returns" && "text-white bg-primary"
+              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between bg-white text-primary hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/returns" && "text-white bg-primary"
                 }`}
               onClick={() => {
                 // dispatch(toggleDrawer());
@@ -227,7 +215,7 @@ const TopBar = () => {
           )}
           {auth.userData.permissions.suppliers.includes("R") && (
             <div
-              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/vendors" && "text-white bg-primary"
+              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between bg-white text-primary hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/vendors" && "text-white bg-primary"
                 }`}
               onClick={() => {
                 // dispatch(toggleDrawer());
@@ -244,7 +232,7 @@ const TopBar = () => {
 
           {auth.userData.permissions.suppliers.includes("R") && (
             <div
-              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/category" && "text-white bg-primary"
+              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between bg-white text-primary hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/category" && "text-white bg-primary"
                 }`}
               onClick={() => {
                 // dispatch(toggleDrawer());
@@ -262,7 +250,7 @@ const TopBar = () => {
 
           {auth.userData.role === "Admin" && (
             <div
-              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/logs" && "text-white bg-primary"
+              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between bg-white text-primary hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/logs" && "text-white bg-primary"
                 }`}
               onClick={() => {
                 // dispatch(toggleDrawer());
@@ -276,27 +264,9 @@ const TopBar = () => {
               <ChevronRightIcon className="w-5 h-5 text-primary" />
             </div>
           )}
-
-          {/* {auth.userData.permissions.archives.includes("R") && (
-            <div
-              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/archives" && "text-white bg-primary"
-                }`}
-              onClick={() => {
-                // dispatch(toggleDrawer());
-                navigate("/archives");
-              }}
-            >
-              <div className="flex items-center justify-center gap-x-3">
-                <ServerStackIcon className="w-6 h-6" />
-                <span className="font-bold ">Archives</span>
-              </div>
-              <ChevronRightIcon className="w-5 h-5 text-primary" />
-            </div>
-          )} */}
-
           {auth.userData.role === "Admin" && (
             <div
-              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/users" && "text-white bg-primary"
+              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between bg-white text-primary hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/users" && "text-white bg-primary"
                 }`}
               onClick={() => {
                 // dispatch(toggleDrawer());
