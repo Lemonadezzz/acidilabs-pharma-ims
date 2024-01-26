@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { useSearchParams } from "react-router-dom";
-import { ShoppingCartIcon, CubeAddIcon, EyeOpenIcon, EditIcon, Tooltip, Spinner } from "evergreen-ui"
+import { ShoppingCartIcon, CubeAddIcon, EyeOpenIcon, EditIcon, Tooltip, Button, Spinner } from "evergreen-ui"
 import {
+
   Input,
   message,
   Modal,
   Spin,
   Table,
-  Divider,
-  Button
+  Divider
 } from "antd";
 import {
   useAddCategoryMutation,
@@ -198,10 +198,12 @@ const Items = () => {
       title: "Price"
     },
     {
-      title: "Actions",
+      title: <div style={{ textAlign: 'center' }}>Actions</div>,
       key: "action",
+
+
       render: (_, item) => (
-        <div>
+        <div div style={{ display: 'flex', justifyContent: 'center' }} >
 
           <Tooltip content="Record Sale" >
             <Button className="hidden md:inline-block">
@@ -220,6 +222,7 @@ const Items = () => {
             </Button>
           </Tooltip>
 
+        
           <Tooltip content="Edit Item" >
             <Button
               className="ml-2 hidden md:inline-block"
@@ -311,14 +314,13 @@ const Items = () => {
           <Button
             key="back"
             onClick={() => setIsUpdateModalVisible((prev) => !prev)}
-            style={{ marginRight: '8px' }}
           >
             Cancel
           </Button>,
           <Button
             key="submit"
             type="primary"
-            style={{ backgroundColor: "#166534", color: "white" }}
+            style={{ backgroundColor: "#22c55e" }}
             loading={updateResult.isLoading}
             onClick={handleUpdateItem}
           >
