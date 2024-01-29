@@ -149,7 +149,7 @@ const TopBar = () => {
       >
         <div>
           <div
-            className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between bg-white text-primary hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/" && "text-white bg-primary"
+            className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/" && "text-white bg-primary"
               }`}
             onClick={() => {
               // dispatch(toggleDrawer());
@@ -165,7 +165,7 @@ const TopBar = () => {
 
           {auth.userData.permissions.items.includes("R") && (
             <div
-              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between bg-white text-primary hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname.includes("/items") && "text-white bg-primary"
+              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname.includes("/items") && "text-white bg-primary"
                 }`}
               onClick={() => {
                 // dispatch(toggleDrawer());
@@ -182,7 +182,7 @@ const TopBar = () => {
 
           {auth.userData.permissions.orders.includes("R") && (
             <div
-              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between bg-white text-primary hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/orders" && "text-white bg-primary"
+              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/orders" && "text-white bg-primary"
                 }`}
               onClick={() => {
                 navigate("/orders");
@@ -199,7 +199,7 @@ const TopBar = () => {
 
           {auth.userData.permissions.returns.includes("R") && (
             <div
-              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between bg-white text-primary hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/returns" && "text-white bg-primary"
+              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/returns" && "text-white bg-primary"
                 }`}
               onClick={() => {
                 // dispatch(toggleDrawer());
@@ -215,7 +215,7 @@ const TopBar = () => {
           )}
           {auth.userData.permissions.suppliers.includes("R") && (
             <div
-              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between bg-white text-primary hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/vendors" && "text-white bg-primary"
+              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/vendors" && "text-white bg-primary"
                 }`}
               onClick={() => {
                 // dispatch(toggleDrawer());
@@ -232,7 +232,7 @@ const TopBar = () => {
 
           {auth.userData.permissions.suppliers.includes("R") && (
             <div
-              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between bg-white text-primary hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/category" && "text-white bg-primary"
+              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/category" && "text-white bg-primary"
                 }`}
               onClick={() => {
                 // dispatch(toggleDrawer());
@@ -250,7 +250,7 @@ const TopBar = () => {
 
           {auth.userData.role === "Admin" && (
             <div
-              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between bg-white text-primary hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/logs" && "text-white bg-primary"
+              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/logs" && "text-white bg-primary"
                 }`}
               onClick={() => {
                 // dispatch(toggleDrawer());
@@ -266,7 +266,7 @@ const TopBar = () => {
           )}
           {auth.userData.role === "Admin" && (
             <div
-              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between bg-white text-primary hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/users" && "text-white bg-primary"
+              className={`shadow px-4 py-3 cursor-pointer rounded-m sm:my-6 my-4 flex items-center justify-between hover:bg-primary hover:text-white transition-all duration-150 ease-out ${location.pathname === "/users" && "text-white bg-primary"
                 }`}
               onClick={() => {
                 // dispatch(toggleDrawer());

@@ -234,29 +234,33 @@ const Users = () => {
           </Button>,
         ]}
       >
+        <p>Username</p>
         <Input
-          placeholder="Enter username"
+          placeholder="Enter display name here"
           className="my-2"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
+        <p>Name</p>
         <Input
-          placeholder="Enter name"
+          placeholder="Enter name here "
           className="my-2"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
+        <p>Password</p>
         <Input
-          placeholder="Enter password"
+          placeholder="Enter password here"
           className="my-2"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        <p>Role</p>
         <Select
           placeholder="Select role"
-          className="mt-2 mb-4"
+          className="my-2 mb-4"
           style={{
-            width: 120,
+            width: 125,
           }}
           options={[
             { label: "Admin", value: "Admin" },
