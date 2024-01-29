@@ -133,7 +133,6 @@ const ItemsHeader = ({
           <Button
             key="submit"
             type="primary"
-            style={{ backgroundColor: "#166534", color: "white" }}
             loading={result.isLoading}
             onClick={handleCreateItem}
           >

@@ -132,7 +132,6 @@ const OrdersHeader = ({
           <Button
             key="submit"
             type="primary"
-            style={{ backgroundColor: "#22c55e" }}
             loading={result.isLoading}
             onClick={handleCreateItem}
           >

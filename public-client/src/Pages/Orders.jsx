@@ -366,7 +366,6 @@ const Orders = () => {
           <Button
             key="submit"
             type="primary"
-            style={{ backgroundColor: "#ef4444" }}
             loading={result.isLoading}
             onClick={handleReturn}
           >
@@ -458,7 +457,6 @@ const Orders = () => {
           <Button
             key="submit"
             type="primary"
-            style={{ backgroundColor: "#22c55e" }}
             loading={resultEdit.isLoading}
             onClick={handleUpdateOrder}
           >

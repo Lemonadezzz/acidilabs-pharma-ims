@@ -187,6 +187,7 @@ const Users = () => {
 
   return (
     <main className="mt-14 p-2 md:p-4 max-w-[1800px] mx-auto">
+      <div className="md:flex gap-4 ml-60 items-start justify-start">
       <Button
         type="primary"
         className="font-bold bg-green-800 flex items-center justify-center gap-x-2 mx-auto mt-4 mb-3 ml-4"
@@ -195,7 +196,8 @@ const Users = () => {
         <PlusIcon className="h-5 w-5 " />
         <span>Create User</span>
       </Button>
-
+      </div>
+      
       {isLoading && (
         <div className="mt-8 mx-auto flex justify-center items-center min-h-[500px]">
           <Spin size="large" />
@@ -226,7 +228,6 @@ const Users = () => {
           <Button
             key="submit"
             type="primary"
-            style={{ backgroundColor: "#22c55e" }}
             loading={result.isLoading}
             onClick={handleCreateUser}
           >
